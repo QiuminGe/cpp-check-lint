@@ -48,13 +48,13 @@ Support cppcheck and cpplint
 
 * cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
 
-## source code 
+## Source code 
 
 * https://github.com/QiumingGe/cpp-check-lint
 
 ## Release Notes
 
-### 1.1.1
+### 1.2.0
     First Release
 
 -----------------------------------------------------------------------------------------------------------
