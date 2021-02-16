@@ -112,7 +112,6 @@ class code_base {
             console.log('cdest_path is null!');
             return;
         }
-
         //在文档中右键检查目录需要额外出来
         if (!isFile && curdoc && (url.fsPath === curdoc.fileName)) {
             dest_path = path.normalize(path.join(dest_path, ".."));
@@ -207,7 +206,6 @@ class code_base {
         this.channel.clear();
         vscode.window.setStatusBarMessage("this.name + ' running...'");
     }
-
 }
 
 exports.code_base = code_base

@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.1.5",
+	"version": "1.2.0",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -365,25 +365,7 @@
 					"description": "includeorder=default|standardcfirst\r\n  For the build/include_order rule, the default is to blindly assume angle\r\n  bracket includes with file extension are c-system-headers (default),\r\n  even knowing this will have false classifications.\r\n  The default is established at google.\r\n  standardcfirst means to instead use an allow-list of known c headers and\r\n  treat all others as separate group of \"other system headers\". The C headers\r\n  included are those of the C-standard lib and closely related ones."
 				}
 			}
-		},
-		"problemMatchers": [
-			{
-				"name": "gcc",
-				"owner": "cpp",
-				"fileLocation": [
-					"relative",
-					"${workspaceFolder}"
-				],
-				"pattern": {
-					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-					"file": 1,
-					"line": 2,
-					"column": 3,
-					"severity": 4,
-					"message": 5
-				}
-			}
-		]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
