@@ -12,8 +12,9 @@ Support cppcheck and cpplint
             * clear all    
             * clear current file    
             * stop check    
-    * explorer/context    
-        * check directory    
+    * explorer/context
+        * check directory || check current file
+        * cmd  
 
 * cpplint:
     * editor/context      
@@ -24,7 +25,8 @@ Support cppcheck and cpplint
             * clear current file    
             * stop check    
     * explorer/context    
-        * check directory    
+        * check directory || check current file
+        * cmd
 
 ## Requirements
 
@@ -40,6 +42,8 @@ Support cppcheck and cpplint
 
 ## Known Issues
 
+* cpp-check-lint https://github.com/QiumingGe/cpp-check-lint/issues
+
 * cpplint : https://github.com/secularbird/cpplint-extension/issues
 
 * cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
@@ -51,7 +55,7 @@ Support cppcheck and cpplint
 ## Release Notes
 
 ### 1.1.1
-    first Release
-    
+    First Release
+
 -----------------------------------------------------------------------------------------------------------
 

@@ -33,6 +33,9 @@ function remove_empty(arr) {
 /**
  * @param {{clear: () => void;appendLine: (arg0: string) => void;}} channel
  * @param {string[]} params
+ * @param {{ (arg0: any): any; call: (arg0: any, arg1: any) => any; }} err_cb
+ * @param {{ (arg0: any): any; call: (arg0: any, arg1: any) => any; }} out_cb
+ * @param {{ (arg0: number): any; call: (arg0: any, arg1: number) => any; }} exit_cb
  */
 function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     // channel.clear();
