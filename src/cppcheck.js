@@ -21,10 +21,10 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--enable=", "all", true),
             this.base.get_cfg(this.settings, "--inconclusive", false, false),
             this.base.get_cfg(this.settings, "-j", 4, true),
+            this.base.get_cfg(this.settings, "--max-ctu-depth=", 2, true),
             this.base.get_cfg(this.settings, "--platform=", "unix64", true),
             this.base.get_cfg(this.settings, "--std_c=", "c89", true, "--std="),
             this.base.get_cfg(this.settings, "--std_c++=", "c++03", true, "--std="),
-            this.base.get_cfg(this.settings, "--suppress=", "", true),
             this.base.get_cfg(this.settings, "--suppressions-list=", "", true),
             this.base.get_cfg(this.settings, "--report-progress", true, true)
         );
@@ -32,12 +32,34 @@ class cppcheck {
             res[0] = this.base.add_root_path(root_path, "cppcheck", "cppcheck")
         }
 
-        let exinluce = this.base.get_cfg(this.settings, "-i ", [], false);
-        if (0 != exinluce) {
-            for (let index = 0; index < exinluce.length; index++) {
-                res.push("-i" + this.base.to_full_name(exinluce[index]))
+        let exclude = this.base.get_cfg(this.settings, "-i ", [], false);
+        if (0 != exclude.length) {
+            for (let index = 0; index < exclude.length; index++) {
+                res.push("-i" + this.base.to_full_name(exclude[index]))
             }
         }
+
+        let suppress = this.base.get_cfg(this.settings, "--suppress=", [], false);
+        if (0 != suppress.length) {
+            for (let index = 0; index < suppress.length; index++) {
+                res.push("--suppress=" + suppress[index]);
+            }
+        }
+
+        let D = this.base.get_cfg(this.settings, "-D", [], false);
+        if (0 != D.length) {
+            for (let index = 0; index < D.length; index++) {
+                res.push("-D" + D[index]);
+            }
+        }
+
+        let U = this.base.get_cfg(this.settings, "-U", [], false);
+        if (0 != U.length) {
+            for (let index = 0; index < U.length; index++) {
+                res.push("-U" + U[index]);
+            }
+        }
+
         common.remove_empty(res);
         res.push(dest_path);
         return res;

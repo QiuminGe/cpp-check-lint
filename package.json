@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.0.0",
+	"version": "1.1.1",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -117,14 +117,24 @@
 					"group": "2_iep@1"
 				},
 				{
+					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
+					"command": "cpp-check-lint.cppcheckcmd",
+					"group": "2_iep@2"
+				},
+				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-check-lint.cpplint",
-					"group": "2_iep@2"
+					"group": "2_iep@3"
 				},
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "cpp-check-lint.cpplintdir",
-					"group": "2_iep@2"
+					"group": "2_iep@3"
+				},
+				{
+					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
+					"command": "cpp-check-lint.cpplintcmd",
+					"group": "2_iep@4"
 				}
 			]
 		},
@@ -159,24 +169,24 @@
 						"docs",
 						"kis_qt",
 						"out",
-						"thurd_party",
+						"third_party",
 						"white_list",
 						"whitebox_test",
 						"src/utils",
 						"src/iep-client-gui",
-						"apsc_client_ui"
+						"src/apsc_client_ui"
 					],
-					"description": "Give a source file or source file directory to exclude from the check. This applies only to source files so header files included by source files are not matched. Directory name is matched to all parts of the path.\r\n auto add base path"
+					"description": "Give a source file or source file directory to exclude\r\nfrom the check. This applies only to source files so\r\nheader files included by source files are not matched.\r\nDirectory name is matched to all parts of the path.\r\n auto add base path"
 				},
 				"cpp-check-lint.cppcheck.--inconclusive": {
 					"type": "boolean",
 					"default": false,
-					"description": "Allow that Cppcheck reports even though the analysis is inconclusive.There are false positives with this option. Each result must be carefully investigated before you know if it is good or bad."
+					"description": "Allow that Cppcheck reports even though the analysis is\r\ninconclusive.\r\nThere are false positives with this option. Each result\r\nmust be carefully investigated before you know if it is\r\ngood or bad."
 				},
 				"cpp-check-lint.cppcheck.--inline-suppr": {
 					"type": "boolean",
 					"default": true,
-					"description": "Enable inline suppressions. Use them by placing one or more comments, like: '// cppcheck-suppress warningId' on the lines before the warning to suppress."
+					"description": "Enable inline suppressions. Use them by placing one or\r\nmore comments, like: '// cppcheck-suppress warningId'\r\non the lines before the warning to suppress."
 				},
 				"cpp-check-lint.cppcheck.-j": {
 					"type": "number",
@@ -228,15 +238,31 @@
 						"c++20"
 					]
 				},
+				"cpp-check-lint.cppcheck.--max-ctu-depth=": {
+					"type": "number",
+					"default": 2,
+					"description": "Max depth in whole program analysis. The default value\r\nis 2. A larger value will mean more errors can be found\r\nbut also means the analysis will be slower."
+				},
 				"cpp-check-lint.cppcheck.--suppress=": {
-					"type": "string",
-					"default": "unmatchedSuppression",
+					"type": "array",
+					"default": [
+						"unmatchedSuppression",
+						"missingIncludeSystem"
+					],
 					"description": "--suppress=<spec>    Suppress warnings that match <spec>. The format of\r\n                     <spec> is:\r\n                     [error id]:[filename]:[line]\r\n                     The [filename] and [line] are optional. If [error id]\r\n                     is a wildcard '*', all error ids match."
 				},
 				"cpp-check-lint.cppcheck.--suppressions-list=": {
 					"type": "string",
 					"default": "",
 					"description": "--suppressions-list=<file>\r\n                     Suppress warnings listed in the file. Each suppression\r\n                     is in the same format as <spec> above."
+				},
+				"cpp-check-lint.cppcheck.-D": {
+					"type": "array",
+					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: '-DDEBUG=1 -D__cplusplus'."
+				},
+				"cpp-check-lint.cppcheck.-U": {
+					"type": "array",
+					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: '-UDEBUG'"
 				},
 				"cpp-check-lint.cpplint.--Enable": {
 					"type": "boolean",
@@ -312,8 +338,19 @@
 					"description": "Search for files to lint recursively. Each directory given in the list\r\nof files to be linted is replaced by all files that descend from that\r\ndirectory. Files with extensions not in the valid extensions list are\r\nexcluded."
 				},
 				"cpp-check-lint.cpplint.--exclude=": {
-					"type": "string",
-					"default": "",
+					"type": "array",
+					"default": [
+						"build",
+						"docs",
+						"kis_qt",
+						"out",
+						"third_party",
+						"white_list",
+						"whitebox_test",
+						"src/utils",
+						"src/iep-client-gui",
+						"src/apsc_client_ui"
+					],
 					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:\r\n    --exclude=one.cc\r\n    --exclude=src/*.cc\r\n    --exclude=src/*.cc --exclude=test/*.cc"
 				},
 				"cpp-check-lint.cpplint.--extensions=": {

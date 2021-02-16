@@ -21,14 +21,22 @@ class cpplint {
             isFile ? "" : "--recursive",
             this.base.get_cfg(this.settings, "--verbose=", 0, true),
             this.base.get_cfg(this.settings, "--filter=", "", true),
-            this.base.get_cfg(this.settings, "--linelength=", 120, true),
-            dest_path
+            this.base.get_cfg(this.settings, "--linelength=", 120, true)
         );
 
         if (this.name == res[0]) {
             res[0] = this.base.add_root_path(root_path, "cpplint", "cpplint.py")
         }
-        common.remove_empty(res)
+
+        let exclude = this.base.get_cfg(this.settings, "--exclude=", [], false);
+        if (0 != exclude.length) {
+            for (let index = 0; index < exclude.length; index++) {
+                res.push("--exclude=" + this.base.to_full_name(exclude[index]))
+            }
+        }
+
+        common.remove_empty(res);
+        res.push(dest_path);
         return res;
     }
 

@@ -104,14 +104,17 @@ class code_base {
      * @param {{ fsPath: any; }} url
      */
     get_dest_path(isFile, url) {
+        //存在界面无文件打开的情况
         let curdoc = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.document : null;
+        //优先从传递过来的URL获取
         let dest_path = url ? url.fsPath : curdoc ? curdoc.fileName : null;
         if (null === dest_path) {
             console.log('cdest_path is null!');
             return;
         }
 
-        if (!isFile && (url.fsPath === curdoc.fileName)) {
+        //在文档中右键检查目录需要额外出来
+        if (!isFile && curdoc && (url.fsPath === curdoc.fileName)) {
             dest_path = path.normalize(path.join(dest_path, ".."));
         }
         return dest_path;
@@ -121,10 +124,21 @@ class code_base {
      * @param {string} file_name
      */
     clear_diagnosticCollection(file_name) {
-        let old_diagnostics = this.diagnosticCollection.get(vscode.Uri.file(file_name));
-        if (0 != old_diagnostics.length) {
-            this.diagnosticCollection.set(vscode.Uri.file(file_name), [])
-        }
+        fs.stat(file_name, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (data.isFile()) {
+                    let old_diagnostics = this.diagnosticCollection.get(vscode.Uri.file(file_name));
+                    if (0 != old_diagnostics.length) {
+                        this.diagnosticCollection.set(vscode.Uri.file(file_name), [])
+                    }
+                }
+                else {
+                    //TODO
+                }
+            }
+        })
     }
 
     /**
