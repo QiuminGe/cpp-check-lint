@@ -46,7 +46,7 @@ function activate(context) {
 		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cpplint.py");
 		res = common.runCmd_sync(cmd + arg);
 		console.log(cmd + " " + arg + " -> ");
-		console.log(res)
+		console.log(res);
 	}
 
 }
