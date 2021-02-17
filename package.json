@@ -6,13 +6,13 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
 	"categories": [
-		"Other"
+		"Linters"
 	],
 	"icon": "bin/icon.png",
 	"activationEvents": [
