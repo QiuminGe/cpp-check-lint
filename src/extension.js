@@ -12,7 +12,7 @@ let cpplint_obj = new cpplint.cpplint();
  */
 function activate(context) {
 	console.log('Congratulations, your extension "cpp-check-lint" is now active!');
-	let settings = vscode.workspace.getConfiguration('cpp-check-lint');
+	let settings = vscode.workspace.getConfiguration('cpp-check-lint', vscode.workspace.workspaceFolders[0].uri);
 	if (settings.get('--Enable') === true) {
 		console.log('start cpp-check-lint extension!');
 	}

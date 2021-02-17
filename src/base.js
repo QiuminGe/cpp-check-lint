@@ -44,16 +44,13 @@ class code_base {
     }
 
     /**
-     * @param {{get: (arg0: any) => any;}} settings
+     * @param {vscode.WorkspaceConfiguration} settings
      * @param {any} key
      * @param {any} default_value
      * @param {any} need_add_key
      */
     get_cfg(settings, key, default_value, need_add_key, real_key = null) {
-        let res = settings.get(key);
-        if (common.is_empty_obj(res)) {
-            res = default_value
-        }
+        let res = settings.get(key, default_value);
         if ("boolean" === typeof (res)) {
             if (null != real_key) {
                 key = real_key;
