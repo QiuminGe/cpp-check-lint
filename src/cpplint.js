@@ -86,10 +86,10 @@ class cpplint {
                 continue;
             }
             let file_name = this.base.to_full_name(regexArray[1]);
+            this.base.check_diagnosticCollection(file_name)
             if (!(file_name in file_dict)) {
                 file_dict[file_name] = [];
             }
-            this.base.check_diagnosticCollection(file_name)
             file_dict[file_name].push(regexArray);
         }
         return file_dict;
@@ -119,6 +119,7 @@ class cpplint {
                     diagnostics.push(this.to_diagnostics(array, l.text.length));
                 }
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
+                console.log("diagnosticCollection set : " + doc.uri);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {
                     let array = file_dict[file_name][index];
