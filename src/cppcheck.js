@@ -143,6 +143,7 @@ class cppcheck {
                     let l = doc.lineAt(line);
                     diagnostics.push(this.to_diagnostics(array, l.text.length));
                 }
+                console.log("diagnosticCollection set : " + doc.uri);
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {

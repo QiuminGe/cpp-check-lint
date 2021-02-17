@@ -123,21 +123,10 @@ class code_base {
      * @param {string} file_name
      */
     clear_diagnosticCollection(file_name) {
-        fs.stat(file_name, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                if (data.isFile()) {
-                    let old_diagnostics = this.diagnosticCollection.get(vscode.Uri.file(file_name));
-                    if (0 != old_diagnostics.length) {
-                        this.diagnosticCollection.set(vscode.Uri.file(file_name), [])
-                    }
-                }
-                else {
-                    //TODO
-                }
-            }
-        })
+        let old_diagnostics = this.diagnosticCollection.get(vscode.Uri.file(file_name));
+        if (0 != old_diagnostics.length) {
+            this.diagnosticCollection.set(vscode.Uri.file(file_name), [])
+        }
     }
 
     /**
@@ -145,6 +134,7 @@ class code_base {
      */
     check_diagnosticCollection(file_name) {
         if (!this.check_files.has(file_name)) {
+            console.log("diagnosticCollection clear : " + file_name);
             this.clear_diagnosticCollection(file_name);
             this.check_files.add(file_name);
         }
@@ -174,8 +164,7 @@ class code_base {
     }
 
     /**
-     * @param {any} context
-     * @param {any} url
+     * @param {vscode.ExtensionContext} context
      */
     on_cmd(context, url) {
         if (this.working) {
