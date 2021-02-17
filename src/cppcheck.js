@@ -25,6 +25,7 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--platform=", "unix64", true),
             this.base.get_cfg(this.settings, "--std_c=", "c89", true, "--std="),
             this.base.get_cfg(this.settings, "--std_c++=", "c++03", true, "--std="),
+            this.base.get_cfg(this.settings, "--inline-suppr", true, true),
             this.base.get_cfg(this.settings, "--suppressions-list=", "", true),
             this.base.get_cfg(this.settings, "--report-progress", true, true)
         );
