@@ -116,6 +116,9 @@ class code_base {
         if (!isFile && curdoc && (url.fsPath === curdoc.fileName)) {
             dest_path = path.normalize(path.join(dest_path, ".."));
         }
+        if (isFile) {
+            this.check_diagnosticCollection(dest_path);
+        }
         return dest_path;
     }
 
