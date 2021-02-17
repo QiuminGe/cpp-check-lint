@@ -12,7 +12,7 @@ let cpplint_obj = new cpplint.cpplint();
  */
 function activate(context) {
 	console.log('Congratulations, your extension "cpp-check-lint" is now active!');
-	let settings = vscode.workspace.getConfiguration('cpp-check-lint', vscode.workspace.workspaceFolders[0].uri);
+	let settings = vscode.workspace.getConfiguration('cpp-check-lint');
 	if (settings.get('--Enable') === true) {
 		console.log('start cpp-check-lint extension!');
 	}
@@ -35,6 +35,13 @@ function activate(context) {
 	disposable = vscode.commands.registerCommand('cpp-check-lint.cpplintdir', (url) => { cpplint_obj.activate(context, url, false); });
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerCommand('cpp-check-lint.cpplintcmd', (url) => { cpplint_obj.on_cmd(context, url); });
+	context.subscriptions.push(disposable);
+
+	disposable = vscode.workspace.onDidChangeConfiguration(function (event) {
+		console.log("onDidChangeConfiguration");
+		cppcheck_obj.update_setting();
+		cpplint_obj.update_setting();
+	})
 	context.subscriptions.push(disposable);
 
 	if ("win32" != os.platform()) {

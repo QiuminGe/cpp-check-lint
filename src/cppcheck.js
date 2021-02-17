@@ -11,6 +11,10 @@ class cppcheck {
         this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
     }
 
+    update_setting() {
+        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
+    }
+
     /**
      * @param {string} dest_path
      * @param {string} root_path
