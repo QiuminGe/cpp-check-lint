@@ -37,6 +37,13 @@ function activate(context) {
 	disposable = vscode.commands.registerCommand('cpp-check-lint.cpplintcmd', (url) => { cpplint_obj.on_cmd(context, url); });
 	context.subscriptions.push(disposable);
 
+	disposable = vscode.workspace.onDidChangeConfiguration(function (event) {
+		console.log("onDidChangeConfiguration");
+		cppcheck_obj.update_setting();
+		cpplint_obj.update_setting();
+	})
+	context.subscriptions.push(disposable);
+
 	if ("win32" != os.platform()) {
 		let cmd = 'chmod +x ';
 		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cppcheck");

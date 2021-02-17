@@ -10,6 +10,11 @@ class cpplint {
         // 1 = path, 2 = line, 3 = severity, 4 = message , 5 = filter, 6 = verbose
         this.regex = /^(.*):(\d+):\s(\w+):\s(.*)\[(.*)\]\s+\[([0-9]+)\]/gm;
     }
+
+    update_setting() {
+        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
+    }
+
     /**
      * @param {string} dest_path
      * @param {string} root_path

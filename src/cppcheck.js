@@ -11,6 +11,10 @@ class cppcheck {
         this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
     }
 
+    update_setting() {
+        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
+    }
+
     /**
      * @param {string} dest_path
      * @param {string} root_path
@@ -62,6 +66,12 @@ class cppcheck {
         }
 
         common.remove_empty(res);
+
+        if (dest_path.endsWith(".hxx") || dest_path.endsWith(".h++") ||
+            dest_path.endsWith(".hh") || dest_path.endsWith(".h") || dest_path.endsWith(".hpp")) {
+            let language = this.base.get_cfg(this.settings, "--language=", "c++", true);
+            res.push(language);
+        }
         res.push(dest_path);
         return res;
     }
