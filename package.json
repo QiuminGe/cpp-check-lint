@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.2.5",
+	"version": "1.2.6",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -167,15 +167,7 @@
 					"type": "array",
 					"default": [
 						"build",
-						"docs",
-						"kis_qt",
-						"out",
-						"third_party",
-						"white_list",
-						"whitebox_test",
-						"src/utils",
-						"src/iep-client-gui",
-						"src/apsc_client_ui"
+						"docs"
 					],
 					"description": "Give a source file or source file directory to exclude\r\nfrom the check. This applies only to source files so\r\nheader files included by source files are not matched.\r\nDirectory name is matched to all parts of the path.\r\n auto add base path"
 				},
@@ -281,7 +273,7 @@
 				},
 				"cpp-check-lint.cpplint.--verbose=": {
 					"type": "number",
-					"default": 0,
+					"default": 1,
 					"enum": [
 						0,
 						1,
@@ -301,12 +293,12 @@
 				},
 				"cpp-check-lint.cpplint.--filter=": {
 					"type": "string",
-					"default": "-legal/copyright",
+					"default": "",
 					"description": "filter=-x,+y,...\r\n  Specify a comma-separated list of category-filters to apply: only\r\n  error messages whose category names pass the filters will be printed.\r\n  (Category names are printed with the message and look like\r\n  \"[whitespace/indent]\".)  Filters are evaluated left to right.\r\n  \"-FOO\" and \"FOO\" means \"do not print categories that start with FOO\".\r\n  \"+FOO\" means \"do print categories that start with FOO\".\r\n\r\n  Examples: --filter=-whitespace,+whitespace/braces\r\n    --filter=whitespace,runtime/printf,+runtime/printf_format\r\n    --filter=-,+build/include_what_you_use\r\n\r\n  To see a list of all the categories used in cpplint, pass no arg:\r\n  --filter="
 				},
 				"cpp-check-lint.cpplint.--counting=": {
 					"type": "string",
-					"default": "total",
+					"default": "detailed",
 					"enum": [
 						"total",
 						"toplevel",
@@ -331,7 +323,7 @@
 				},
 				"cpp-check-lint.cpplint.--headers=": {
 					"type": "string",
-					"default": "hxx, h++, hh, h, cuh, hpp",
+					"default": "hxx,h++,hh,h,cuh,hpp",
 					"description": "headers=x,y,...\r\n  The header extensions that cpplint will treat as .h in checks. Values are\r\n  automatically added to --extensions list.\r\n (by default, only files with extensions {'hxx', 'h++', 'hh', 'h', 'cuh', 'hpp'} will be assumed to be hea\r\n\r\n  Examples:\r\n    --headers=hxx,h++,hh,h,cuh,hpp\r\n    --headers=hpp,hxx\r\n    --headers=hpp"
 				},
 				"cpp-check-lint.cpplint.--recursive": {
@@ -346,15 +338,7 @@
 					"type": "array",
 					"default": [
 						"build",
-						"docs",
-						"kis_qt",
-						"out",
-						"third_party",
-						"white_list",
-						"whitebox_test",
-						"src/utils",
-						"src/iep-client-gui",
-						"src/apsc_client_ui"
+						"docs"
 					],
 					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:\r\n    --exclude=one.cc\r\n    --exclude=src/*.cc\r\n    --exclude=src/*.cc --exclude=test/*.cc"
 				},
