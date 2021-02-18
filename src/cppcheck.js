@@ -40,28 +40,36 @@ class cppcheck {
         let exclude = this.base.get_cfg(this.settings, "-i ", [], false);
         if (0 != exclude.length) {
             for (let index = 0; index < exclude.length; index++) {
-                res.push("-i" + this.base.to_full_name(exclude[index]))
+                if (!common.is_empty(exclude[index])) {
+                    res.push("-i" + this.base.to_full_name(exclude[index]))
+                }
             }
         }
 
         let suppress = this.base.get_cfg(this.settings, "--suppress=", [], false);
         if (0 != suppress.length) {
             for (let index = 0; index < suppress.length; index++) {
-                res.push("--suppress=" + suppress[index]);
+                if (!common.is_empty(suppress[index])) {
+                    res.push("--suppress=" + suppress[index]);
+                }
             }
         }
 
         let D = this.base.get_cfg(this.settings, "-D", [], false);
         if (0 != D.length) {
             for (let index = 0; index < D.length; index++) {
-                res.push("-D" + D[index]);
+                if (!common.is_empty(D[index])) {
+                    res.push("-D" + D[index]);
+                }
             }
         }
 
         let U = this.base.get_cfg(this.settings, "-U", [], false);
         if (0 != U.length) {
             for (let index = 0; index < U.length; index++) {
-                res.push("-U" + U[index]);
+                if (!common.is_empty(U[index])) {
+                    res.push("-U" + U[index]);
+                }
             }
         }
 
