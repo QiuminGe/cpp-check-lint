@@ -44,7 +44,7 @@ Support cppcheck and cpplint
 
 * cpp-check-lint https://github.com/QiumingGe/cpp-check-lint/issues
 
-* cpplint : https://github.com/secularbird/cpplint-extension/issues
+* cpplint : https://github.com/cpplint/cpplint/issues
 
 * cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
 
@@ -54,7 +54,7 @@ Support cppcheck and cpplint
 
 ## Release Notes
 
-### 1.2.7
+### 1.2.8
     First Release 
     VS Code Version 1.5.3 
 -----------------------------------------------------------------------------------------------------------

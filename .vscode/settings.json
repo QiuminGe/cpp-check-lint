@@ -1,3 +1,0 @@
-{
-    "cpp-check-lint.cpplint.--headers=": "hxx,h++,hh,h,cuh,hpp"
-}
