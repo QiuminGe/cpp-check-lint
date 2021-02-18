@@ -54,8 +54,8 @@ Support cppcheck and cpplint
 
 ## Release Notes
 
-### 1.2.5
-    First Release
-
+### 1.2.6
+    First Release 
+    VS Code Version 1.5.3 
 -----------------------------------------------------------------------------------------------------------
 

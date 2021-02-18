@@ -24,6 +24,9 @@ class cpplint {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", "cpplint", false),
             "--output=eclipse",
             isFile ? "" : "--recursive",
+            this.base.get_cfg(this.settings, "--counting=", "detailed", true),
+            this.base.get_cfg(this.settings, "--extensions=", "hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu", true),
+            this.base.get_cfg(this.settings, "--headers=", "hxx,h++,hh,h,cuh,hpp", true),
             this.base.get_cfg(this.settings, "--verbose=", 0, true),
             this.base.get_cfg(this.settings, "--filter=", "", true),
             this.base.get_cfg(this.settings, "--linelength=", 120, true)
