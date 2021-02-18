@@ -39,7 +39,9 @@ class cpplint {
         let exclude = this.base.get_cfg(this.settings, "--exclude=", [], false);
         if (0 != exclude.length) {
             for (let index = 0; index < exclude.length; index++) {
-                res.push("--exclude=" + this.base.to_full_name(exclude[index]))
+                if (!common.is_empty(exclude[index])) {
+                    res.push("--exclude=" + this.base.to_full_name(exclude[index]))
+                }
             }
         }
 
