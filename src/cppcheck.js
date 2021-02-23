@@ -1,18 +1,20 @@
 const vscode = require("vscode");
 let common = require("./common");
-let base = require("./base")
+let base = require("./base");
+const { throws } = require("assert");
 
 class cppcheck {
     constructor() {
         this.name = "cppcheck";
         this.base = new base.code_base(this.name);
-        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
         //"--template={file}:{line}:{column}: {severity}: {message}:[{id}]",
         this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
+        this.update_setting();
     }
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick—fix", false, false);
     }
 
     /**
@@ -107,6 +109,64 @@ class cppcheck {
         d.source = this.name;
         return d;
     }
+    /**
+     * @param {vscode.TextDocument} document
+     * @param {vscode.Range | vscode.Selection} range
+     * @param {vscode.CodeActionContext} context
+     * @param {vscode.CancellationToken} token
+     */
+    provideCodeActions(document, range, context, token){
+
+        if(0 == context.diagnostics.length){
+            return null;
+        }
+
+        let my_diagnostics = []
+        for (const diagnostic of context.diagnostics) {
+            if (diagnostic.source == this.name){
+                my_diagnostics.push(diagnostic);
+            }
+        }
+
+        if ( 0 == my_diagnostics.length){
+            return null;
+        }
+
+        const pos = range.start;
+        const line = document.lineAt(pos.line);
+
+        let actions = [];
+        if (my_diagnostics.length > 1){
+            const fix = new vscode.CodeAction(`cppcheck-suppress all`, vscode.CodeActionKind.QuickFix);  
+            let suppress_str = "// cppcheck-suppress [";
+            for (const diagnostic of my_diagnostics) {
+                suppress_str = suppress_str + diagnostic.code.toString().split(":")[1] + ",";
+            }
+            suppress_str = suppress_str.substr(0, suppress_str.length - 1);
+            suppress_str = suppress_str + "]";
+            suppress_str = suppress_str + "\r\n" + document.lineAt(pos.line).text;
+            const startPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex);
+            const endPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex + suppress_str.length);
+            const edits = [new vscode.TextEdit(new vscode.Range(startPos, endPos), suppress_str)];
+            fix.edit = new vscode.WorkspaceEdit();
+            fix.edit.set(document.uri, edits);
+            actions.push(fix);
+        }
+
+        for (const diagnostic of my_diagnostics) {
+            let code = diagnostic.code.toString().split(":")[1]
+            const fix = new vscode.CodeAction(`cppcheck-suppress ${code}`, vscode.CodeActionKind.QuickFix);  
+            let suppress_str = "// cppcheck-suppress " + code;
+            suppress_str = suppress_str + "\r\n" + document.lineAt(pos.line).text;
+            const startPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex);
+            const endPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex + suppress_str.length);
+            const edits = [new vscode.TextEdit(new vscode.Range(startPos, endPos), suppress_str)];
+            fix.edit = new vscode.WorkspaceEdit();
+            fix.edit.set(document.uri, edits);
+            actions.push(fix);
+        }
+        return actions;
+    }
 
     /**
      * @param {any} code
@@ -160,10 +220,12 @@ class cppcheck {
                         line--;
                     }
                     let l = doc.lineAt(line);
-                    diagnostics.push(this.to_diagnostics(array, l.text.length));
+                    let diagnostic = this.to_diagnostics(array, l.text.length);
+                    diagnostics.push(diagnostic);
                 }
                 console.log("diagnosticCollection set : " + doc.uri);
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
+                this.base.CodeAction.set(doc.uri,diagnostics);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {
                     let array = file_dict[file_name][index];
@@ -181,7 +243,7 @@ class cppcheck {
      * @param {{ fsPath: any; path: string; }} url
      */
     activate(context, url, isFile) {
-        if (this.settings.get('--Enable') === true) {
+        if (this.settings.get('--enable') === true) {
             console.log(this.name + ' is enable!');
         }
         else {

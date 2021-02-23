@@ -6,13 +6,14 @@ class cpplint {
     constructor() {
         this.name = "cpplint";
         this.base = new base.code_base(this.name);
-        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
         // 1 = path, 2 = line, 3 = severity, 4 = message , 5 = filter, 6 = verbose
         this.regex = /^(.*):(\d+):\s(\w+):\s(.*)\[(.*)\]\s+\[([0-9]+)\]/gm;
+        this.update_setting();
     }
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick—fix", false, false);
     }
 
     /**
@@ -72,6 +73,44 @@ class cpplint {
         d.code = severity + ":" + source;
         d.source = this.name;
         return d;
+    }
+
+    /**
+     * @param {vscode.TextDocument} document
+     * @param {vscode.Range | vscode.Selection} range
+     * @param {vscode.CodeActionContext} context
+     * @param {vscode.CancellationToken} token
+     */
+    provideCodeActions(document, range, context, token){
+
+        if(0 == context.diagnostics.length){
+            return null;
+        }
+
+        let my_diagnostics = []
+        for (const diagnostic of context.diagnostics) {
+            if (diagnostic.source == this.name){
+                my_diagnostics.push(diagnostic);
+            }
+        }
+
+        if ( 0 == my_diagnostics.length){
+            return null;
+        }
+
+        const pos = range.start;
+        const line = document.lineAt(pos.line);
+
+        let actions = [];
+        const fix = new vscode.CodeAction(`cpplint-suppress`, vscode.CodeActionKind.QuickFix);  
+        let suppress_str = "  // NOLINT";
+        const startPos = document.lineAt(pos.line).range.end;
+        const endPos = new vscode.Position(line.lineNumber, startPos.character + suppress_str.length);
+        const edits = [new vscode.TextEdit(new vscode.Range(startPos, endPos), suppress_str)];
+        fix.edit = new vscode.WorkspaceEdit();
+        fix.edit.set(document.uri, edits);
+        actions.push(fix);
+        return actions;
     }
 
     /**
@@ -146,7 +185,7 @@ class cpplint {
      * @param {{ fsPath: any; path: string; }} url
      */
     activate(context, url, isFile) {
-        if (this.settings.get('--Enable') === true) {
+        if (this.settings.get('--enable') === true) {
             console.log(this.name + ' is enable!');
         }
         else {
