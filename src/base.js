@@ -167,24 +167,20 @@ class code_base {
      * @param {vscode.ExtensionContext} context
      */
     on_cmd(context, url) {
+        let message = this.name + " Select action:";
+        let items = []
         if (this.working) {
-            vscode.window.showInformationMessage(this.name + " Select action:", "stop")
-                .then(function (select) {
-                    this.do_cmd(context, url, select);
-                }.bind(this));
-        }
-        else if (url) {
-            vscode.window.showInformationMessage(this.name + " Select action:", "clear all", "clear current")
-                .then(function (select) {
-                    this.do_cmd(context, url, select);
-                }.bind(this));
-        }
-        else {
-            vscode.window.showInformationMessage(this.name + " Select action:", "clear all")
-                .then(function (select) {
-                    this.do_cmd(context, url, select);
-                }.bind(this));
-        }
+            items.push("stop");
+        } else if (url) {
+            items.push("clear all");
+            items.push("clear current");
+        } else {
+            items.push("clear all");
+        };
+        vscode.window.showInformationMessage(message, ...items)
+        .then(function (select) {
+            this.do_cmd(context, url, select);
+        }.bind(this));
     }
 
     deactivate() {

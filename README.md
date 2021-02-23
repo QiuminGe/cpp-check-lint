@@ -55,7 +55,9 @@ Support cppcheck and cpplint
 ## Release Notes
 
 ### 1.2.8
-    First Release 
-    VS Code Version 1.5.3 
+    First Release VS Code Version 1.5.3 
+### 1.2.9
+    support quick-fix
+    support check/lint on save
 -----------------------------------------------------------------------------------------------------------
 
