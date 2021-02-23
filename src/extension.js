@@ -49,6 +49,17 @@ function activate(context) {
 	})
 	context.subscriptions.push(disposable);
 
+	disposable = vscode.workspace.onDidSaveTextDocument(function (event) {
+		console.log("onDidSaveTextDocument" + event.uri.fsPath);
+		if (cppcheck_obj.onsave){
+			cppcheck_obj.activate(context, event.uri, true);
+		}
+		if (cpplint_obj.onsave){
+			cpplint_obj.activate(context, event.uri, true);
+		}
+	})
+	context.subscriptions.push(disposable);
+
 	if ("win32" != os.platform()) {
 		let cmd = 'chmod +x ';
 		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cppcheck");

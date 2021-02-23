@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.2.8",
+	"version": "1.2.9",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -153,10 +153,15 @@
 					"default": true,
 					"description": "Enable or disable the cppcheck"
 				},
-				"cpp-check-lint.cppcheck.--quick—fix": {
+				"cpp-check-lint.cppcheck.--quick_fix": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether to enable experimental \"Quick Fix\" feature."
+				},
+				"cpp-check-lint.cppcheck.--onsave": {
+					"type": "boolean",
+					"default": true,
+					"description": "Whether cppcheck is run on save"
 				},
 				"cpp-check-lint.cppcheck.--executable": {
 					"type": "string",
@@ -289,10 +294,15 @@
 					"default": "cpplint",
 					"description": "The path to the cpplint executable(builtin binaries will be used if empty or cpplint)."
 				},
-				"cpp-check-lint.cpplint.--quick—fix": {
+				"cpp-check-lint.cpplint.--quick_fix": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether to enable experimental \"Quick Fix\" feature."
+				},
+				"cpp-check-lint.cpplint.--onsave": {
+					"type": "boolean",
+					"default": true,
+					"description": "Whether cpplint is run on save"
 				},
 				"cpp-check-lint.cpplint.--verbose=": {
 					"type": "number",

@@ -13,7 +13,8 @@ class cpplint {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick—fix", false, false);
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
+        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
     }
 
     /**

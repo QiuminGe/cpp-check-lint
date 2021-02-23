@@ -14,7 +14,8 @@ class cppcheck {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick—fix", false, false);
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
+        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
     }
 
     /**
@@ -225,7 +226,6 @@ class cppcheck {
                 }
                 console.log("diagnosticCollection set : " + doc.uri);
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
-                this.base.CodeAction.set(doc.uri,diagnostics);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {
                     let array = file_dict[file_name][index];
