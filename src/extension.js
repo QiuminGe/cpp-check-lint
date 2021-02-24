@@ -64,12 +64,13 @@ function activate(context) {
 		let cmd = 'chmod +x ';
 		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cppcheck");
 		let res = common.runCmd_sync(cmd + arg);
-		console.log(cmd + " " + arg + " -> ");
-		console.log(res)
+		console.log(cmd + " " + arg + " -> "+ res);
 		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cpplint.py");
 		res = common.runCmd_sync(cmd + arg);
-		console.log(cmd + " " + arg + " -> ");
-		console.log(res);
+		console.log(cmd + " " + arg + " -> "+ res);
+		cmd = 'pwd';
+		res = common.runCmd_sync(cmd);
+		console.log(cmd + "->" + res);
 	}
 
 }
