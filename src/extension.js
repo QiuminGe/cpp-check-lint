@@ -62,10 +62,10 @@ function activate(context) {
 
 	if ("win32" != os.platform()) {
 		let cmd = 'chmod +x ';
-		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cppcheck");
+		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cppcheck");
 		let res = common.runCmd_sync(cmd + arg);
 		console.log(cmd + " " + arg + " -> "+ res);
-		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "Linux64"), "cpplint.py");
+		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cpplint.py");
 		res = common.runCmd_sync(cmd + arg);
 		console.log(cmd + " " + arg + " -> "+ res);
 		cmd = 'pwd';
