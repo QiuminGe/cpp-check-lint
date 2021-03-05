@@ -16,6 +16,8 @@
 	],
 	"icon": "bin/icon.png",
 	"activationEvents": [
+		"onLanguage:cpp",
+		"onLanguage:c",
 		"onCommand:cpp-check-lint.cppcheck",
 		"onCommand:cpp-check-lint.cppcheckdir",
 		"onCommand:cpp-check-lint.cppcheckcmd",
