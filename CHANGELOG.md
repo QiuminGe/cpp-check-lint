@@ -13,3 +13,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - Fix Not used right click to activate the program, save invalid
 - Fix Cppcheck is executed when saving non-C/C++ files
+- Modify the description of [executable]
+- Modify [Linux64] -> [linux64] 

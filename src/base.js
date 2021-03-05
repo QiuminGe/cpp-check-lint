@@ -91,7 +91,7 @@ class code_base {
             return path.join(root_path, exe_name_win);
         }
         else {
-            root_path = path.join(root_path, "Linux64");
+            root_path = path.join(root_path, "linux64");
             return path.join(root_path, exe_name_linux);
         }
     }
