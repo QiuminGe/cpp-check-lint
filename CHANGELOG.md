@@ -8,4 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - ~~v1.2.5~~  February 17, 2021 - Release for VS Code 1.53
 - ~~v1.2.8~~ February 18, 2021 - replace v1.2.5
-- v1.3.0 February 23, 2021 - replace v1.2.8
+- ~~v1.3.0~~ February 23, 2021 - replace v1.2.8
+## [v1.3.1] - 2021-03-05
+### Changed
+- Fix Not used right click to activate the program, save invalid
+- Fix Cppcheck is executed when saving non-C/C++ files
