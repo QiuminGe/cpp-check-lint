@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -16,6 +16,8 @@
 	],
 	"icon": "bin/icon.png",
 	"activationEvents": [
+		"onLanguage:cpp",
+		"onLanguage:c",
 		"onCommand:cpp-check-lint.cppcheck",
 		"onCommand:cpp-check-lint.cppcheckdir",
 		"onCommand:cpp-check-lint.cppcheckcmd",
