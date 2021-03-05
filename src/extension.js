@@ -22,7 +22,7 @@ function activate(context) {
 	}
 	console.log("context.asAbsolutePath : " + context.extensionPath);
 
-	let support_language = ["cpp","c","h","hh","hpp","h++"]
+	let support_language = ["cpp","c","h","hh","hpp","h++","cc"]
 
 	let disposable = vscode.commands.registerCommand('cpp-check-lint.cppcheck', (url) => { cppcheck_obj.activate(context, url, true); });
 	context.subscriptions.push(disposable);
@@ -52,10 +52,21 @@ function activate(context) {
 	disposable = vscode.workspace.onDidSaveTextDocument(function (event) {
 		console.log("onDidSaveTextDocument" + event.uri.fsPath);
 		if (cppcheck_obj.onsave){
-			cppcheck_obj.activate(context, event.uri, true);
+			for(let i = 0; i < support_language.length; i++) {
+				if (event.uri.fsPath.endsWith("."+ support_language[i])){
+					cppcheck_obj.activate(context, event.uri, true);
+					break;
+				}
+			} 
+
 		}
 		if (cpplint_obj.onsave){
-			cpplint_obj.activate(context, event.uri, true);
+			for(let i = 0; i < support_language.length; i++) {
+				if (event.uri.fsPath.endsWith("."+ support_language[i])){
+					cpplint_obj.activate(context, event.uri, true);
+					break;
+				}
+			} 
 		}
 	})
 	context.subscriptions.push(disposable);
