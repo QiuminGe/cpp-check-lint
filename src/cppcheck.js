@@ -137,11 +137,20 @@ class cppcheck {
         const line = document.lineAt(pos.line);
 
         let actions = [];
-        if (my_diagnostics.length > 1){
+
+        let suppress_set = new Set();
+        for (const diagnostic of my_diagnostics) {
+            let id =  diagnostic.code.toString().split(":")[1];
+            if (!suppress_set.has(id)){
+                suppress_set.add(id)
+            }
+        }
+
+        if (suppress_set.size > 1){
             const fix = new vscode.CodeAction(`cppcheck-suppress all`, vscode.CodeActionKind.QuickFix);  
             let suppress_str = "// cppcheck-suppress [";
-            for (const diagnostic of my_diagnostics) {
-                suppress_str = suppress_str + diagnostic.code.toString().split(":")[1] + ",";
+            for (const suppress_id of suppress_set) {
+                suppress_str = suppress_str + suppress_id + ",";
             }
             suppress_str = suppress_str.substr(0, suppress_str.length - 1);
             suppress_str = suppress_str + "]";
@@ -154,10 +163,9 @@ class cppcheck {
             actions.push(fix);
         }
 
-        for (const diagnostic of my_diagnostics) {
-            let code = diagnostic.code.toString().split(":")[1]
-            const fix = new vscode.CodeAction(`cppcheck-suppress ${code}`, vscode.CodeActionKind.QuickFix);  
-            let suppress_str = "// cppcheck-suppress " + code;
+        for (const suppress_id of suppress_set) {
+            const fix = new vscode.CodeAction(`cppcheck-suppress ${suppress_id}`, vscode.CodeActionKind.QuickFix);  
+            let suppress_str = "// cppcheck-suppress " + suppress_id;
             suppress_str = suppress_str + "\r\n" + document.lineAt(pos.line).text;
             const startPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex);
             const endPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex + suppress_str.length);
