@@ -15,3 +15,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix Cppcheck is executed when saving non-C/C++ files
 - Modify the description of [executable]
 - Modify [Linux64] -> [linux64] 
+
+## [v1.3.2] - 2021-03-08
+### Changed
+- Fix Quick fixed for the same error in one line
