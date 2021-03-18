@@ -15,6 +15,7 @@ Support cppcheck and cpplint
     * explorer/context
         * check directory || check current file
         * cmd  
+    * OnSave/QuickFix
 
 * cpplint:
     * editor/context      
@@ -27,6 +28,7 @@ Support cppcheck and cpplint
     * explorer/context    
         * check directory || check current file
         * cmd
+    * OnSave/QuickFix
 
 ## Requirements
 
@@ -42,7 +44,7 @@ Support cppcheck and cpplint
 
 ## Known Issues
 
-* cpp-check-lint https://github.com/QiumingGe/cpp-check-lint/issues
+* cpp-check-lint https://github.com/QiuminGe/cpp-check-lint/issues
 
 * cpplint : https://github.com/cpplint/cpplint/issues
 
@@ -50,7 +52,7 @@ Support cppcheck and cpplint
 
 ## Source code 
 
-* https://github.com/QiumingGe/cpp-check-lint
+* https://github.com/QiuminGe/cpp-check-lint
 
 ## Release Notes
 
