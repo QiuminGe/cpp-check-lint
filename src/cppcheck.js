@@ -24,7 +24,7 @@ class cppcheck {
      */
     get_cfg(root_path, dest_path) {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", "cppcheck", false),
-            "--template={file}:{line}:{column}: {severity}: {message}:[{id}]",
+            "--template={file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
             this.base.get_cfg(this.settings, "--enable=", "all", true),
             this.base.get_cfg(this.settings, "--inconclusive", false, false),
             this.base.get_cfg(this.settings, "-j", 4, true),

@@ -19,3 +19,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.3.2] - 2021-03-08
 ### Changed
 - Fix Quick fixed for the same error in one line
+
+## [v1.3.3] - 2021-04-01
+### Changed
+- cppcheck show cwe id
