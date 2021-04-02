@@ -38,7 +38,7 @@ Support cppcheck and cpplint
 
 ## Extension Settings
 
-* if cppcheck path set "cppcheck" will use builtin binaries (cppcheck 2.3)
+* if cppcheck path set "cppcheck" will use builtin binaries (cppcheck 2.4.1)
 
 * if cpplint path set "cpplint" will use builtin binaries (cpplint 1.5.4)
 
@@ -67,5 +67,8 @@ Support cppcheck and cpplint
     bug fix
 ### 1.3.3
     cppcheck show cwe id
+
+### 1.3.4
+    builtin binaries cppcheck 2.4.1
 -----------------------------------------------------------------------------------------------------------
 

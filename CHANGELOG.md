@@ -23,3 +23,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.3.3] - 2021-04-01
 ### Changed
 - cppcheck show cwe id
+
+## [v1.3.5] - 2021-04-01
+### Changed
+- builtin binaries cppcheck 2.4.1
+- optimization efficiency

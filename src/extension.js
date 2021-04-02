@@ -22,7 +22,11 @@ function activate(context) {
 	}
 	console.log("context.asAbsolutePath : " + context.extensionPath);
 
-	let support_language = ["cpp","c","h","hh","hpp","h++","cc"]
+	let support_language = ["cpp","c","h","hh","hpp","h++","cc"];
+	
+	cppcheck_obj.set_root_path(context.extensionPath);
+	
+	cpplint_obj.set_root_path(context.extensionPath);
 
 	let disposable = vscode.commands.registerCommand('cpp-check-lint.cppcheck', (url) => { cppcheck_obj.activate(context, url, true); });
 	context.subscriptions.push(disposable);

@@ -9,20 +9,17 @@ class cppcheck {
         this.base = new base.code_base(this.name);
         //"--template={file}:{line}:{column}: {severity}: {message}:[{id}]",
         this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
+    }
+
+     /**
+     * @param {string} root_path
+     */
+    set_root_path(root_path){
+        this.root_path = root_path;
         this.update_setting();
     }
 
-    update_setting() {
-        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
-        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
-    }
-
-    /**
-     * @param {string} dest_path
-     * @param {string} root_path
-     */
-    get_cfg(root_path, dest_path) {
+    get_cfg() {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", "cppcheck", false),
             "--template={file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
             this.base.get_cfg(this.settings, "--enable=", "all", true),
@@ -36,8 +33,9 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--suppressions-list=", "", true),
             this.base.get_cfg(this.settings, "--report-progress", true, true)
         );
+
         if (this.name == res[0]) {
-            res[0] = this.base.add_root_path(root_path, "cppcheck", "cppcheck")
+            res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck")
         }
 
         let exclude = this.base.get_cfg(this.settings, "-i ", [], false);
@@ -77,7 +75,18 @@ class cppcheck {
         }
 
         common.remove_empty(res);
+        return res;
+    }
 
+    update_setting() {
+        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
+        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
+        this.cmd_ary = this.get_cfg();
+    }
+
+    get_full_cmd(dest_path) {
+        let res = this.cmd_ary.slice(0);
         if (dest_path.endsWith(".hxx") || dest_path.endsWith(".h++") ||
             dest_path.endsWith(".hh") || dest_path.endsWith(".h") || dest_path.endsWith(".hpp")) {
             let language = this.base.get_cfg(this.settings, "--language=", "c++", true);
@@ -269,8 +278,7 @@ class cppcheck {
         }
 
         let dest_path = this.base.get_dest_path(isFile, url);
-        let root_path = context.extensionPath;
-        let cmmand_array = this.get_cfg(root_path, dest_path);
+        let cmmand_array = this.get_full_cmd(dest_path);
         console.log(cmmand_array);
         this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, null, this.on_exit, this);
         console.log("pid : " + this.base.spawn.pid);
