@@ -150,6 +150,24 @@
 					"default": true,
 					"description": "Enable or disable the cpp-check-lint"
 				},
+				"cpp-check-lint.--log": {
+					"type": "number",
+					"default": 0,
+					"enum":[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"enumDescriptions":[
+						"OFF",
+						"Error",
+						"Warning",
+						"Info",
+						"Debug"
+					]
+				},
 				"cpp-check-lint.cppcheck.--enable": {
 					"type": "boolean",
 					"default": true,

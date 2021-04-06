@@ -1,6 +1,7 @@
 const vscode = require('vscode');
 const os = require('os');
 const path = require('path');
+const log = require('./log');
 const common = require("./common");
 const cppcheck = require("./cppcheck");
 let cppcheck_obj = new cppcheck.cppcheck();
@@ -11,16 +12,17 @@ let cpplint_obj = new cpplint.cpplint();
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	console.log('Congratulations, your extension "cpp-check-lint" is now active!');
+	log.info('Congratulations, your extension "cpp-check-lint" is now active!');
 	let settings = vscode.workspace.getConfiguration('cpp-check-lint');
+	log.setLogLevel(settings.get('--log'));
 	if (settings.get('--enable') === true) {
-		console.log('start cpp-check-lint extension!');
+		log.info('start cpp-check-lint extension!');
 	}
 	else {
-		console.log('disable cpp-check-lint extension!');
+		log.info('disable cpp-check-lint extension!');
 		return;
 	}
-	console.log("context.asAbsolutePath : " + context.extensionPath);
+	log.info("context.asAbsolutePath : " + context.extensionPath);
 
 	let support_language = ["cpp","c","h","hh","hpp","h++","cc"];
 	
@@ -47,14 +49,17 @@ function activate(context) {
 	context.subscriptions.push(disposable);
 
 	disposable = vscode.workspace.onDidChangeConfiguration(function (event) {
-		console.log("onDidChangeConfiguration");
+		let settings = vscode.workspace.getConfiguration('cpp-check-lint');
+		log.setLogLevel(settings.get('--log'));
+		log.info("onDidChangeConfiguration");
 		cppcheck_obj.update_setting();
 		cpplint_obj.update_setting();
 	})
 	context.subscriptions.push(disposable);
 
 	disposable = vscode.workspace.onDidSaveTextDocument(function (event) {
-		console.log("onDidSaveTextDocument" + event.uri.fsPath);
+
+		log.info("onDidSaveTextDocument : " + event.uri.fsPath);
 		if (cppcheck_obj.onsave){
 			for(let i = 0; i < support_language.length; i++) {
 				if (event.uri.fsPath.endsWith("."+ support_language[i])){
@@ -79,13 +84,13 @@ function activate(context) {
 		let cmd = 'chmod +x ';
 		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cppcheck");
 		let res = common.runCmd_sync(cmd + arg);
-		console.log(cmd + " " + arg + " -> "+ res);
+		log.info(cmd + " " + arg + " -> "+ res);
 		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cpplint.py");
 		res = common.runCmd_sync(cmd + arg);
-		console.log(cmd + " " + arg + " -> "+ res);
+		log.info(cmd + " " + arg + " -> "+ res);
 		cmd = 'pwd';
 		res = common.runCmd_sync(cmd);
-		console.log(cmd + "->" + res);
+		log.info(cmd + "->" + res);
 	}
 
 }

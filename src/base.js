@@ -3,6 +3,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require('path');
 let common = require("./common");
+const log = require('./log');
 
 class code_base {
     /**
@@ -15,7 +16,7 @@ class code_base {
         this.working = false;
         this.spawn = null;
         this.check_files = new Set();
-        console.log("new obj : " + this.name);
+        log.info("new obj : " + this.name);
     }
 
     /**
@@ -83,7 +84,7 @@ class code_base {
      * @param {string} exe_name_linux
      */
     add_root_path(root_path, exe_name_win, exe_name_linux) {
-        console.log(exe_name_win, exe_name_linux)
+        log.debug(exe_name_win, exe_name_linux)
         let platform = os.platform();
         root_path = path.join(root_path, "bin")
         if (platform === 'win32') {
@@ -106,7 +107,7 @@ class code_base {
         //优先从传递过来的URL获取
         let dest_path = url ? url.fsPath : curdoc ? curdoc.fileName : null;
         if (null === dest_path) {
-            console.log('cdest_path is null!');
+            log.error('cdest_path is null!');
             return;
         }
         //在文档中右键检查目录需要额外出来
@@ -134,7 +135,7 @@ class code_base {
      */
     check_diagnosticCollection(file_name) {
         if (!this.check_files.has(file_name)) {
-            console.log("diagnosticCollection clear : " + file_name);
+            log.info("diagnosticCollection clear : " + file_name);
             this.clear_diagnosticCollection(file_name);
             this.check_files.add(file_name);
         }
@@ -146,7 +147,7 @@ class code_base {
      * @param {any} select
      */
     do_cmd(context, url, select) {
-        console.log(select);
+        log.info(select);
         switch (select) {
             case "clear all": {
                 this.diagnosticCollection.clear();

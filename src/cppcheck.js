@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 let common = require("./common");
 let base = require("./base");
+const log = require('./log');
 const { throws } = require("assert");
 
 class cppcheck {
@@ -192,7 +193,7 @@ class cppcheck {
     on_exit(code) {
         this.base.working = false;
         this.base.check_files.clear();
-        console.log("exit code is :" + code);
+        log.info("exit code is :" + code);
     }
 
     /**
@@ -241,7 +242,7 @@ class cppcheck {
                     let diagnostic = this.to_diagnostics(array, l.text.length);
                     diagnostics.push(diagnostic);
                 }
-                console.log("diagnosticCollection set : " + doc.uri);
+                log.debug("diagnosticCollection set : " + doc.uri);
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {
@@ -261,10 +262,10 @@ class cppcheck {
      */
     activate(context, url, isFile) {
         if (this.settings.get('--enable') === true) {
-            console.log(this.name + ' is enable!');
+            log.info(this.name + ' is enable!');
         }
         else {
-            console.log(this.name + ' is disable!');
+            log.info(this.name + ' is disable!');
             return;
         }
 
@@ -279,9 +280,9 @@ class cppcheck {
 
         let dest_path = this.base.get_dest_path(isFile, url);
         let cmmand_array = this.get_full_cmd(dest_path);
-        console.log(cmmand_array);
+        log.info(cmmand_array);
         this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, null, this.on_exit, this);
-        console.log("pid : " + this.base.spawn.pid);
+        log.info("pid : " + this.base.spawn.pid);
     }
 
     /**

@@ -1,5 +1,5 @@
 const child_process = require("child_process");
-
+const log = require('./log');
 /**
  * @param {object} obj
  */
@@ -44,7 +44,7 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     const spawn = child_process.spawn(cmd, params);
 
     spawn.stdout.on("data", (data) => {
-        console.log("stdout is:" + data);
+        log.debug("stdout is:" + data);
         channel.appendLine(data.toString().trim());
         if (null != out_cb) {
             callbackobj ? out_cb.call(callbackobj, data) : out_cb(data);
@@ -52,14 +52,14 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     });
 
     spawn.stderr.on("data", (data) => {
-        console.log("stderr is :" + data);
+        log.debug("stderr is :" + data);
         if (null != err_cb) {
             callbackobj ? err_cb.call(callbackobj, data) : err_cb(data);
         }
     });
 
     spawn.on("close", (code) => {
-        console.log("close code is :" + code);
+        log.debug("close code is :" + code);
         channel.appendLine("close code is : " + code);
         if (null != exit_cb) {
             callbackobj ? exit_cb.call(callbackobj, code) : exit_cb(code);
@@ -67,7 +67,7 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     });
 
     spawn.on("exit", (code) => {
-        console.log("exit code is :" + code);
+        log.debug("exit code is :" + code);
         channel.appendLine("exit code is : " + code);
         if (null != exit_cb) {
             callbackobj ? exit_cb.call(callbackobj, code) : exit_cb(code);
@@ -75,7 +75,7 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     });
 
     spawn.on("error", (err) => {
-        console.log("error : " + err);
+        log.debug("error : " + err);
         channel.appendLine("error : " + err);
     });
     return spawn;
