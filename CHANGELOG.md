@@ -24,7 +24,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - cppcheck show cwe id
 
-## [v1.3.5] - 2021-04-01
+## [v1.3.4] - 2021-04-06
 ### Changed
 - builtin binaries cppcheck 2.4.1
 - optimization efficiency
+- support set log level

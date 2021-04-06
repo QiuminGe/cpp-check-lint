@@ -69,6 +69,6 @@ Support cppcheck and cpplint
     cppcheck show cwe id
 
 ### 1.3.4
-    builtin binaries cppcheck 2.4.1
+    builtin binaries cppcheck update to 2.4.1
 -----------------------------------------------------------------------------------------------------------
 
