@@ -24,7 +24,7 @@ class cpplint {
             "--output=eclipse",
             this.base.get_cfg(this.settings, "--counting=", "detailed", true),
             this.base.get_cfg(this.settings, "--extensions=", "hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu", true),
-            this.base.get_cfg(this.settings, "--headers=", "hxx,h++,hh,h,cuh,hpp", true),
+            this.base.get_cfg(this.settings, "--headers=", "hxx,h++,hh,h,cuh,hpp", false),
             this.base.get_cfg(this.settings, "--verbose=", 0, true),
             this.base.get_cfg(this.settings, "--filter=", "", true),
             this.base.get_cfg(this.settings, "--linelength=", 120, true)
@@ -114,7 +114,7 @@ class cpplint {
         const line = document.lineAt(pos.line);
 
         let actions = [];
-        const fix = new vscode.CodeAction(`cpplint-suppress`, vscode.CodeActionKind.QuickFix);  
+        const fix = new vscode.CodeAction(`cpplint-suppress`, vscode.CodeActionKind.QuickFix);
         let suppress_str = "  // NOLINT";
         const startPos = document.lineAt(pos.line).range.end;
         const endPos = new vscode.Position(line.lineNumber, startPos.character + suppress_str.length);
