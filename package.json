@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.3.3",
+	"version": "1.3.4",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -149,6 +149,24 @@
 					"type": "boolean",
 					"default": true,
 					"description": "Enable or disable the cpp-check-lint"
+				},
+				"cpp-check-lint.--log": {
+					"type": "number",
+					"default": 0,
+					"enum":[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"enumDescriptions":[
+						"OFF",
+						"Error",
+						"Warning",
+						"Info",
+						"Debug"
+					]
 				},
 				"cpp-check-lint.cppcheck.--enable": {
 					"type": "boolean",

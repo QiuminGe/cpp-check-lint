@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 let common = require("./common");
 let base = require("./base")
+const log = require('./log');
 
 class cpplint {
     constructor() {
@@ -8,24 +9,19 @@ class cpplint {
         this.base = new base.code_base(this.name);
         // 1 = path, 2 = line, 3 = severity, 4 = message , 5 = filter, 6 = verbose
         this.regex = /^(.*):(\d+):\s(\w+):\s(.*)\[(.*)\]\s+\[([0-9]+)\]/gm;
+    }
+
+     /**
+     * @param {string} root_path
+     */
+    set_root_path(root_path){
+        this.root_path = root_path;
         this.update_setting();
     }
 
-    update_setting() {
-        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
-        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
-    }
-
-    /**
-     * @param {string} dest_path
-     * @param {string} root_path
-     * @param {boolean} isFile
-     */
-    get_cfg(root_path, dest_path, isFile) {
+    get_cfg(root_path) {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", "cpplint", false),
             "--output=eclipse",
-            isFile ? "" : "--recursive",
             this.base.get_cfg(this.settings, "--counting=", "detailed", true),
             this.base.get_cfg(this.settings, "--extensions=", "hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu", true),
             this.base.get_cfg(this.settings, "--headers=", "hxx,h++,hh,h,cuh,hpp", true),
@@ -35,7 +31,7 @@ class cpplint {
         );
 
         if (this.name == res[0]) {
-            res[0] = this.base.add_root_path(root_path, "cpplint", "cpplint.py")
+            res[0] = this.base.add_root_path(this.root_path, "cpplint", "cpplint.py")
         }
 
         let exclude = this.base.get_cfg(this.settings, "--exclude=", [], false);
@@ -48,6 +44,21 @@ class cpplint {
         }
 
         common.remove_empty(res);
+        return res;
+    }
+
+    update_setting() {
+        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
+        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
+        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
+        this.cmd_ary = this.get_cfg();
+    }
+
+    get_full_cmd(dest_path, isFile) {
+        let res = this.cmd_ary.slice(0);
+        if(!isFile){
+            res.push("--recursive");
+        }
         res.push(dest_path);
         return res;
     }
@@ -120,7 +131,7 @@ class cpplint {
     on_exit(code) {
         this.base.working = false;
         this.base.check_files.clear();
-        console.log("exit code is :" + code);
+        log.info("exit code is : " + code);
     }
 
     /**
@@ -169,7 +180,7 @@ class cpplint {
                     diagnostics.push(this.to_diagnostics(array, l.text.length));
                 }
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
-                console.log("diagnosticCollection set : " + doc.uri);
+                log.debug("diagnosticCollection set : " + doc.uri);
             }, err => {
                 for (let index = 0; index < file_dict[file_name].length; index++) {
                     let array = file_dict[file_name][index];
@@ -187,10 +198,10 @@ class cpplint {
      */
     activate(context, url, isFile) {
         if (this.settings.get('--enable') === true) {
-            console.log(this.name + ' is enable!');
+            log.info(this.name + ' is enable!');
         }
         else {
-            console.log(this.name + ' is disable!');
+            log.info(this.name + ' is disable!');
             return;
         }
 
@@ -204,11 +215,10 @@ class cpplint {
         }
 
         let dest_path = this.base.get_dest_path(isFile, url);
-        let root_path = context.extensionPath;
-        let cmmand_array = this.get_cfg(root_path, dest_path, isFile);
-        console.log(cmmand_array);
+        let cmmand_array = this.get_full_cmd(dest_path, isFile);
+        log.info(cmmand_array);
         this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, null, this.on_exit, this);
-        console.log("pid : " + this.base.spawn.pid);
+        log.info("pid : " + this.base.spawn.pid);
     }
 
     /**
