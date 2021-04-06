@@ -67,7 +67,7 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
     });
 
     spawn.on("exit", (code) => {
-        log.debug("exit code is :" + code);
+        log.debug("exit code is : " + code);
         channel.appendLine("exit code is : " + code);
         if (null != exit_cb) {
             callbackobj ? exit_cb.call(callbackobj, code) : exit_cb(code);

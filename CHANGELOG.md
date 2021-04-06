@@ -26,6 +26,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [v1.3.4] - 2021-04-06
 ### Changed
-- builtin binaries cppcheck 2.4.1
+- builtin binaries cppcheck update to 2.4.1
 - optimization efficiency
 - support set log level
