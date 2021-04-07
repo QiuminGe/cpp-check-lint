@@ -12,64 +12,64 @@ class cppcheck {
         this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
     }
 
-     /**
-     * @param {string} root_path
-     */
-    set_root_path(root_path){
+    /**
+    * @param {string} root_path
+    */
+    set_root_path(root_path) {
         this.root_path = root_path;
         this.update_setting();
     }
 
     get_cfg() {
-        let res = new Array(this.base.get_cfg(this.settings, "--executable", "cppcheck", false),
+        let res = new Array(this.base.get_cfg(this.settings, "--executable", false, "cppcheck"),
             "--template={file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
-            this.base.get_cfg(this.settings, "--enable=", "all", true),
-            this.base.get_cfg(this.settings, "--inconclusive", false, false),
-            this.base.get_cfg(this.settings, "-j", 4, true),
-            this.base.get_cfg(this.settings, "--max-ctu-depth=", 2, true),
-            this.base.get_cfg(this.settings, "--platform=", "unix64", true),
-            this.base.get_cfg(this.settings, "--std_c=", "c89", true, "--std="),
-            this.base.get_cfg(this.settings, "--std_c++=", "c++03", true, "--std="),
-            this.base.get_cfg(this.settings, "--inline-suppr", true, true),
-            this.base.get_cfg(this.settings, "--suppressions-list=", "", true),
-            this.base.get_cfg(this.settings, "--report-progress", true, true)
+            this.base.get_cfg(this.settings, "--enable=", true),
+            this.base.get_cfg(this.settings, "--inconclusive", false),
+            this.base.get_cfg(this.settings, "-j", true),
+            this.base.get_cfg(this.settings, "--max-ctu-depth=", true),
+            this.base.get_cfg(this.settings, "--platform=", true),
+            this.base.get_cfg(this.settings, "--std_c=", true, null, "--std="),
+            this.base.get_cfg(this.settings, "--std_c++=", true, null, "--std="),
+            this.base.get_cfg(this.settings, "--inline-suppr", true),
+            this.base.get_cfg(this.settings, "--suppressions-list=", true),
+            this.base.get_cfg(this.settings, "--report-progress", true)
         );
 
         if (this.name == res[0]) {
             res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck")
         }
 
-        let exclude = this.base.get_cfg(this.settings, "-i ", [], false);
+        let exclude = this.base.get_cfg(this.settings, "-i ", false, []);
         if (0 != exclude.length) {
             for (let index = 0; index < exclude.length; index++) {
-                if (!common.is_empty(exclude[index])) {
+                if (!common.is_empty_str(exclude[index])) {
                     res.push("-i" + this.base.to_full_name(exclude[index]))
                 }
             }
         }
 
-        let suppress = this.base.get_cfg(this.settings, "--suppress=", [], false);
+        let suppress = this.base.get_cfg(this.settings, "--suppress=", false, []);
         if (0 != suppress.length) {
             for (let index = 0; index < suppress.length; index++) {
-                if (!common.is_empty(suppress[index])) {
+                if (!common.is_empty_str(suppress[index])) {
                     res.push("--suppress=" + suppress[index]);
                 }
             }
         }
 
-        let D = this.base.get_cfg(this.settings, "-D", [], false);
+        let D = this.base.get_cfg(this.settings, "-D", false, []);
         if (0 != D.length) {
             for (let index = 0; index < D.length; index++) {
-                if (!common.is_empty(D[index])) {
+                if (!common.is_empty_str(D[index])) {
                     res.push("-D" + D[index]);
                 }
             }
         }
 
-        let U = this.base.get_cfg(this.settings, "-U", [], false);
+        let U = this.base.get_cfg(this.settings, "-U", false, []);
         if (0 != U.length) {
             for (let index = 0; index < U.length; index++) {
-                if (!common.is_empty(U[index])) {
+                if (!common.is_empty_str(U[index])) {
                     res.push("-U" + U[index]);
                 }
             }
@@ -81,8 +81,8 @@ class cppcheck {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
-        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
+        this.quick_fix = this.base.get_cfg(this.settings, "--quick_fix", false, true);
+        this.onsave = this.base.get_cfg(this.settings, "--onsave", false, true);
         this.cmd_ary = this.get_cfg();
     }
 
@@ -126,20 +126,20 @@ class cppcheck {
      * @param {vscode.CodeActionContext} context
      * @param {vscode.CancellationToken} token
      */
-    provideCodeActions(document, range, context, token){
+    provideCodeActions(document, range, context, token) {
 
-        if(0 == context.diagnostics.length){
+        if (0 == context.diagnostics.length) {
             return null;
         }
 
         let my_diagnostics = []
         for (const diagnostic of context.diagnostics) {
-            if (diagnostic.source == this.name){
+            if (diagnostic.source == this.name) {
                 my_diagnostics.push(diagnostic);
             }
         }
 
-        if ( 0 == my_diagnostics.length){
+        if (0 == my_diagnostics.length) {
             return null;
         }
 
@@ -150,14 +150,14 @@ class cppcheck {
 
         let suppress_set = new Set();
         for (const diagnostic of my_diagnostics) {
-            let id =  diagnostic.code.toString().split(":")[1];
-            if (!suppress_set.has(id)){
+            let id = diagnostic.code.toString().split(":")[1];
+            if (!suppress_set.has(id)) {
                 suppress_set.add(id)
             }
         }
 
-        if (suppress_set.size > 1){
-            const fix = new vscode.CodeAction(`cppcheck-suppress all`, vscode.CodeActionKind.QuickFix);  
+        if (suppress_set.size > 1) {
+            const fix = new vscode.CodeAction(`cppcheck-suppress all`, vscode.CodeActionKind.QuickFix);
             let suppress_str = "// cppcheck-suppress [";
             for (const suppress_id of suppress_set) {
                 suppress_str = suppress_str + suppress_id + ",";
@@ -174,7 +174,7 @@ class cppcheck {
         }
 
         for (const suppress_id of suppress_set) {
-            const fix = new vscode.CodeAction(`cppcheck-suppress ${suppress_id}`, vscode.CodeActionKind.QuickFix);  
+            const fix = new vscode.CodeAction(`cppcheck-suppress ${suppress_id}`, vscode.CodeActionKind.QuickFix);
             let suppress_str = "// cppcheck-suppress " + suppress_id;
             suppress_str = suppress_str + "\r\n" + document.lineAt(pos.line).text;
             const startPos = new vscode.Position(line.lineNumber, line.firstNonWhitespaceCharacterIndex);

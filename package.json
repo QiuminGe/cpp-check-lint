@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.3.4",
+	"version": "1.3.5",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -153,14 +153,14 @@
 				"cpp-check-lint.--log": {
 					"type": "number",
 					"default": 0,
-					"enum":[
+					"enum": [
 						0,
 						1,
 						2,
 						3,
 						4
 					],
-					"enumDescriptions":[
+					"enumDescriptions": [
 						"OFF",
 						"Error",
 						"Warning",
@@ -195,7 +195,7 @@
 				},
 				"cpp-check-lint.cppcheck.-i ": {
 					"type": "array",
-					"examples" : [
+					"examples": [
 						"build",
 						"src/utils"
 					],
@@ -213,7 +213,10 @@
 					"description": "Enable inline suppressions. Use them by placing one or\r\nmore comments, like: '// cppcheck-suppress warningId'\r\non the lines before the warning to suppress."
 				},
 				"cpp-check-lint.cppcheck.-j": {
-					"type": "number",
+					"type": [
+						"number",
+						"null"
+					],
 					"default": 4,
 					"description": "Start <jobs> threads to do the checking simultaneously."
 				},
@@ -246,6 +249,13 @@
 					],
 					"description": " Specifies platform specific types and sizes."
 				},
+				"cpp-check-lint.cppcheck.--report-progress": {
+					"type": "boolean",
+					"default": true,
+					"enum": [
+						true
+					]
+				},
 				"cpp-check-lint.cppcheck.--std_c=": {
 					"type": "string",
 					"default": "c89",
@@ -267,13 +277,16 @@
 					]
 				},
 				"cpp-check-lint.cppcheck.--max-ctu-depth=": {
-					"type": "number",
+					"type": [
+						"number",
+						"null"
+					],
 					"default": 2,
 					"description": "Max depth in whole program analysis. The default value\r\nis 2. A larger value will mean more errors can be found\r\nbut also means the analysis will be slower."
 				},
 				"cpp-check-lint.cppcheck.--suppress=": {
 					"type": "array",
-					"examples" : [
+					"examples": [
 						"unmatchedSuppression",
 						"missingIncludeSystem"
 					],
@@ -290,19 +303,19 @@
 				},
 				"cpp-check-lint.cppcheck.-D": {
 					"type": "array",
-					"examples" : [
+					"examples": [
 						"DUBUG",
 						"WIN32"
 					],
-					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: '-DDEBUG=1 -D__cplusplus'."
+					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: 'DEBUG=1 __cplusplus'."
 				},
 				"cpp-check-lint.cppcheck.-U": {
 					"type": "array",
-					"examples" : [
+					"examples": [
 						"DUBUG",
 						"WIN32"
 					],
-					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: '-UDEBUG'"
+					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: 'DEBUG'"
 				},
 				"cpp-check-lint.cpplint.--enable": {
 					"type": "boolean",
@@ -370,7 +383,10 @@
 					"description": "repository=path\r\n  The top level directory of the repository, used to derive the header\r\n  guard CPP variable. By default, this is determined by searching for a\r\n  path that contains .git, .hg, or .svn. When this flag is specified, the\r\n  given path is used instead. This option allows the header guard CPP\r\n  variable to remain consistent even if members of a team have different\r\n  repository root directories (such as when checking out a subdirectory\r\n  with SVN). In addition, users of non-mainstream version control systems\r\n  can use this flag to ensure readable header guard CPP variables.\r\n\r\n  Examples:\r\n    Assuming that Alice checks out ProjectName and Bob checks out\r\n    ProjectName/trunk and trunk contains src/chrome/ui/browser.h, then\r\n    with no --repository flag, the header guard CPP variable will be:\r\n\r\n    Alice => TRUNK_SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n    Bob   => SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n\r\n    If Alice uses the --repository=trunk flag and Bob omits the flag or\r\n    uses --repository=. then the header guard CPP variable will be:\r\n\r\n    Alice => SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n    Bob   => SRC_CHROME_BROWSER_UI_BROWSER_H_"
 				},
 				"cpp-check-lint.cpplint.--linelength=": {
-					"type": "number",
+					"type": [
+						"number",
+						"null"
+					],
 					"default": 120,
 					"description": "linelength=digits\r\n  This is the allowed line length for the project. The default value is\r\n  80 characters.\r\n\r\n  Examples:\r\n    --linelength=120"
 				},
@@ -389,7 +405,7 @@
 				},
 				"cpp-check-lint.cpplint.--exclude=": {
 					"type": "array",
-					"examples" : [
+					"examples": [
 						"build",
 						"src/utils"
 					],
