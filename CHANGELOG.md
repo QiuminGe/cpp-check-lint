@@ -30,5 +30,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - optimization efficiency
 - support set log level
 
-### 1.3.5
-    Adapt to low version cppcheck and cpplint
+## 1.3.5
+### Changed
+    - Adapt to low version cppcheck and cpplint
