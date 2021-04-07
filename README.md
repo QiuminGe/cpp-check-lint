@@ -72,6 +72,6 @@ Support cppcheck and cpplint
     builtin binaries cppcheck update to 2.4.1
 
 ### 1.3.5
-    If the configuration is empty, the code will not give the default configuration
+    If the configuration is empty, the code will not give the default configuration.
 -----------------------------------------------------------------------------------------------------------
 
