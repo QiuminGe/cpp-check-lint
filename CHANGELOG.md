@@ -29,3 +29,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - builtin binaries cppcheck update to 2.4.1
 - optimization efficiency
 - support set log level
+
+### 1.3.5
+    Adapt to low version cppcheck and cpplint

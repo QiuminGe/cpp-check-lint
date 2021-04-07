@@ -1,8 +1,6 @@
 const child_process = require("child_process");
 const log = require('./log');
 
-
-
 /**
  * @param {string} str
  */
