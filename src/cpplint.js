@@ -11,33 +11,33 @@ class cpplint {
         this.regex = /^(.*):(\d+):\s(\w+):\s(.*)\[(.*)\]\s+\[([0-9]+)\]/gm;
     }
 
-     /**
-     * @param {string} root_path
-     */
-    set_root_path(root_path){
+    /**
+    * @param {string} root_path
+    */
+    set_root_path(root_path) {
         this.root_path = root_path;
         this.update_setting();
     }
 
     get_cfg(root_path) {
-        let res = new Array(this.base.get_cfg(this.settings, "--executable", "cpplint", false),
+        let res = new Array(this.base.get_cfg(this.settings, "--executable", false, "cpplint"),
             "--output=eclipse",
-            this.base.get_cfg(this.settings, "--counting=", "detailed", true),
-            this.base.get_cfg(this.settings, "--extensions=", "hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu", true),
-            this.base.get_cfg(this.settings, "--headers=", "hxx,h++,hh,h,cuh,hpp", true),
-            this.base.get_cfg(this.settings, "--verbose=", 0, true),
-            this.base.get_cfg(this.settings, "--filter=", "", true),
-            this.base.get_cfg(this.settings, "--linelength=", 120, true)
+            this.base.get_cfg(this.settings, "--counting=", true),
+            this.base.get_cfg(this.settings, "--extensions=", true),
+            this.base.get_cfg(this.settings, "--headers=", true),
+            this.base.get_cfg(this.settings, "--verbose=", true),
+            this.base.get_cfg(this.settings, "--filter=", true),
+            this.base.get_cfg(this.settings, "--linelength=", true)
         );
 
         if (this.name == res[0]) {
             res[0] = this.base.add_root_path(this.root_path, "cpplint", "cpplint.py")
         }
 
-        let exclude = this.base.get_cfg(this.settings, "--exclude=", [], false);
+        let exclude = this.base.get_cfg(this.settings, "--exclude=", false, []);
         if (0 != exclude.length) {
             for (let index = 0; index < exclude.length; index++) {
-                if (!common.is_empty(exclude[index])) {
+                if (!common.is_empty_str(exclude[index])) {
                     res.push("--exclude=" + this.base.to_full_name(exclude[index]))
                 }
             }
@@ -49,14 +49,14 @@ class cpplint {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
-        this.quick_fix =  this.base.get_cfg(this.settings, "--quick_fix", false, false);
-        this.onsave =  this.base.get_cfg(this.settings, "--onsave", true, false);
+        this.quick_fix = this.base.get_cfg(this.settings, "--quick_fix", false, true);
+        this.onsave = this.base.get_cfg(this.settings, "--onsave", false, true);
         this.cmd_ary = this.get_cfg();
     }
 
     get_full_cmd(dest_path, isFile) {
         let res = this.cmd_ary.slice(0);
-        if(!isFile){
+        if (!isFile) {
             res.push("--recursive");
         }
         res.push(dest_path);
@@ -93,20 +93,20 @@ class cpplint {
      * @param {vscode.CodeActionContext} context
      * @param {vscode.CancellationToken} token
      */
-    provideCodeActions(document, range, context, token){
+    provideCodeActions(document, range, context, token) {
 
-        if(0 == context.diagnostics.length){
+        if (0 == context.diagnostics.length) {
             return null;
         }
 
         let my_diagnostics = []
         for (const diagnostic of context.diagnostics) {
-            if (diagnostic.source == this.name){
+            if (diagnostic.source == this.name) {
                 my_diagnostics.push(diagnostic);
             }
         }
 
-        if ( 0 == my_diagnostics.length){
+        if (0 == my_diagnostics.length) {
             return null;
         }
 
@@ -114,7 +114,7 @@ class cpplint {
         const line = document.lineAt(pos.line);
 
         let actions = [];
-        const fix = new vscode.CodeAction(`cpplint-suppress`, vscode.CodeActionKind.QuickFix);  
+        const fix = new vscode.CodeAction(`cpplint-suppress`, vscode.CodeActionKind.QuickFix);
         let suppress_str = "  // NOLINT";
         const startPos = document.lineAt(pos.line).range.end;
         const endPos = new vscode.Position(line.lineNumber, startPos.character + suppress_str.length);

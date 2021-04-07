@@ -1,20 +1,38 @@
 const child_process = require("child_process");
 const log = require('./log');
-/**
- * @param {object} obj
- */
-function is_empty_obj(obj) {
-    return (typeof obj === 'undefined' || obj === null || obj === "");
-}
+
+
 
 /**
  * @param {string} str
  */
-function is_empty(str) {
+function is_empty_str(str) {
     if (str != null && str.trim().length > 0) {
         return false;
     }
     return true;
+}
+
+/**
+ * @param {object} obj
+ */
+function is_empty_obj(obj) {
+    if ((typeof (obj) === 'undefined' || obj === null || obj === "")) {
+        return true;
+    }
+
+    if ((typeof (obj)) === "object") {
+        for (const key in obj) {
+            return false
+        }
+        return true;
+    }
+
+    if ((typeof (obj)) === "string") {
+        return is_empty_str(obj);
+    }
+
+    return false;
 }
 
 /**
@@ -96,7 +114,7 @@ function kill(spawn) {
 }
 
 module.exports = {
-    is_empty,
+    is_empty_str,
     is_empty_obj,
     remove_empty,
     runCmd,

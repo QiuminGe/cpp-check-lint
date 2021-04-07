@@ -50,31 +50,30 @@ class code_base {
      * @param {any} default_value
      * @param {any} need_add_key
      */
-    get_cfg(settings, key, default_value, need_add_key, real_key = null) {
-        let res = settings.get(key, default_value);
-        if ("boolean" === typeof (res)) {
-            if (null != real_key) {
-                key = real_key;
+    get_cfg(settings, key, need_add_key, default_value = null, real_key = null) {
+        let res = settings.get(key);
+        if (common.is_empty_obj(res)) {
+            log.warn(this.name + " get key [" + key + "] return [" + res + "]");
+            if (null != default_value) {
+                res = default_value;
             }
+            else {
+                return "";
+            }
+        }
+
+        if (null != real_key) {
+            key = real_key;
+        }
+
+        if ("boolean" === typeof (res)) {
             return res ? key : "";
         }
 
         if ("number" === typeof (res)) {
             res = res.toString();
         }
-        else if ("string" === typeof (res)) {
-            if (common.is_empty(res)) {
-                res = default_value
-            }
-        }
 
-        if (("string" === typeof (res)) && (common.is_empty(res))) {
-            return ""
-        }
-
-        if (null != real_key) {
-            key = real_key;
-        }
         return need_add_key ? key + res : res;
     }
 
@@ -166,6 +165,7 @@ class code_base {
 
     /**
      * @param {vscode.ExtensionContext} context
+     * @param {any} url
      */
     on_cmd(context, url) {
         let message = this.name + " Select action:";
@@ -179,9 +179,9 @@ class code_base {
             items.push("clear all");
         };
         vscode.window.showInformationMessage(message, ...items)
-        .then(function (select) {
-            this.do_cmd(context, url, select);
-        }.bind(this));
+            .then(function (select) {
+                this.do_cmd(context, url, select);
+            }.bind(this));
     }
 
     deactivate() {
