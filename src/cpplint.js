@@ -171,6 +171,9 @@ class cpplint {
             }
             file_dict[file_name].push(regexArray);
         }
+        if (0 == Object.keys(file_dict).length) {
+            this.base.channel.appendLine(result)
+        }
         return file_dict;
     }
 
