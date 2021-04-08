@@ -69,7 +69,6 @@ Support cppcheck and cpplint
     >> |string|""|
     >> |number|null|
     >> |object|null|
-    >> ||||
 
 * builtin binaries(cppcheck 2.4.1, cpplint 1.5.4)
     > support  
@@ -79,8 +78,7 @@ Support cppcheck and cpplint
     >> |Debian|64|9+|
     >> |CentOS|64|7+|
     >> |RHEL|64|7+|
-    >> |windows|64|7+|
-    >> ||||
+    >> |Windows|64|7+|
 
 ## Known Issues
 
