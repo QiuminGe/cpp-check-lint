@@ -100,9 +100,18 @@ function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
 /**
  * @param {string} cmd
  */
-function runCmd_sync(cmd) {
-    return child_process.execSync(cmd, { timeout: 1000 });
+function runCmd_execSync(cmd) {
+    return child_process.execSync(cmd);
 }
+
+/**
+ * @param {string} cmd
+ * @param {readonly string[]} params
+ */
+function runCmd_spawnSync(cmd, params) {
+    return child_process.spawnSync(cmd, params, { timeout: 1000, encoding: 'utf8' });
+}
+
 
 /**
  * @param {{ kill: () => any; }} spawn
@@ -116,6 +125,7 @@ module.exports = {
     is_empty_obj,
     remove_empty,
     runCmd,
-    runCmd_sync,
+    runCmd_execSync,
+    runCmd_spawnSync,
     kill
 }

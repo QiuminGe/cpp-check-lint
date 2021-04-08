@@ -20,7 +20,7 @@ class cpplint {
     }
 
     get_cfg(root_path) {
-        let res = new Array(this.base.get_cfg(this.settings, "--executable", false, "cpplint"),
+        let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
             "--output=eclipse",
             this.base.get_cfg(this.settings, "--counting=", true),
             this.base.get_cfg(this.settings, "--extensions=", true),
@@ -30,15 +30,33 @@ class cpplint {
             this.base.get_cfg(this.settings, "--linelength=", true)
         );
 
-        if (this.name == res[0]) {
-            res[0] = this.base.add_root_path(this.root_path, "cpplint", "cpplint.py")
-        }
-
         let exclude = this.base.get_cfg(this.settings, "--exclude=", false, []);
         if (0 != exclude.length) {
             for (let index = 0; index < exclude.length; index++) {
                 if (!common.is_empty_str(exclude[index])) {
                     res.push("--exclude=" + this.base.to_full_name(exclude[index]))
+                }
+            }
+        }
+
+        if (common.is_empty_str(res[0])) {
+            res[0] = this.base.add_root_path(this.root_path, "cpplint", "cpplint.py")
+            log.info("use builtin binaries " + res[0]);
+        }
+        else {
+            let params = ["--version"];
+            let result = common.runCmd_spawnSync(res[0], params);
+            if (result.error) {
+                log.info("try run [" + res[0] + "] error name : [" + result.error.name + "], message [" + result.error.message + "]");
+                res[0] = this.base.add_root_path(this.root_path, "cpplint", "cpplint.py")
+                log.info("use builtin binaries " + res[0]);
+            } else {
+                log.info("try run [" + res[0] + "] stdout : [" + result.stdout + "], stderr [" + result.stderr + "]");
+                let version = result.stdout
+                if (!common.is_empty_str(version)) {
+                    log.info("use [" + version.trim() + "]")
+                } else {
+                    log.info("use [" + res[0] + "]")
                 }
             }
         }
