@@ -7,33 +7,33 @@ const L_OFF = 0;
 
 var g_level = L_OFF;
 
-function debug(fmt, ...extras){
-    if (g_level >= L_DEBUG){
+function debug(fmt, ...extras) {
+    if (g_level >= L_DEBUG) {
         console.log(fmt, ...extras);
     }
 }
 
-function info(fmt, ...extras){
-    if (g_level >= L_INFO){
+function info(fmt, ...extras) {
+    if (g_level >= L_INFO) {
         console.log(fmt, ...extras);
     }
 }
 
-function warn(fmt, ...extras){
-    if (g_level >= L_WARN){
+function warn(fmt, ...extras) {
+    if (g_level >= L_WARN) {
         console.log(fmt, ...extras);
     }
 }
 
-function error(fmt, ...extras){
-    if (g_level >= L_ERR){
+function error(fmt, ...extras) {
+    if (g_level >= L_ERR) {
         console.log(fmt, ...extras);
     }
 }
 
-function setLogLevel(level)
-{
+function setLogLevel(level) {
     g_level = level;
+    console.log("now log level is " + g_level);
 }
 
 module.exports = {

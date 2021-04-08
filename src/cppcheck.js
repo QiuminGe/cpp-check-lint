@@ -21,7 +21,7 @@ class cppcheck {
     }
 
     get_cfg() {
-        let res = new Array(this.base.get_cfg(this.settings, "--executable", false, "cppcheck"),
+        let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
             "--template={file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
             this.base.get_cfg(this.settings, "--enable=", true),
             this.base.get_cfg(this.settings, "--inconclusive", false),
@@ -34,10 +34,6 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--suppressions-list=", true),
             this.base.get_cfg(this.settings, "--report-progress", true)
         );
-
-        if (this.name == res[0]) {
-            res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck")
-        }
 
         let exclude = this.base.get_cfg(this.settings, "-i ", false, []);
         if (0 != exclude.length) {
@@ -72,6 +68,33 @@ class cppcheck {
                 if (!common.is_empty_str(U[index])) {
                     res.push("-U" + U[index]);
                 }
+            }
+        }
+
+        if (common.is_empty_str(res[0])) {
+            res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck")
+            log.info("use builtin binaries " + res[0]);
+        }
+        else {
+            let params = ["--version"];
+            let result = common.runCmd_spawnSync(res[0], params);
+            if (result.error) {
+                log.info("try run [" + res[0] + "] error name : [" + result.error.name + "], message [" + result.error.message + "]");
+                res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck")
+                log.info("use builtin binaries " + res[0]);
+            }
+            else {
+                log.info("try run [" + res[0] + "] stdout : [" + result.stdout + "], stderr [" + result.stderr + "]");
+                let version = result.stdout;
+                if ("string" == typeof (version)) {
+                    if (!version.trim().toLowerCase().startsWith("cppcheck")) {
+                        res[0] = this.base.add_root_path(this.root_path, "cppcheck", "cppcheck");
+                        log.info("use builtin binaries " + res[0]);
+                    }
+                    else {
+                        log.info("use [" + version.trim() + "]")
+                    }
+                };
             }
         }
 

@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.3.5",
+	"version": "1.3.6",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -186,7 +186,7 @@
 				"cpp-check-lint.cppcheck.--executable": {
 					"type": "string",
 					"default": "cppcheck",
-					"description": "The path to the cppcheck executable(builtin binaries will be used if empty or cppcheck)."
+					"description": "The path to the cppcheck executable(builtin binaries will be used if empty or run error)."
 				},
 				"cpp-check-lint.cppcheck.--enable=": {
 					"type": "string",
@@ -307,6 +307,7 @@
 						"DUBUG",
 						"WIN32"
 					],
+					"default": [],
 					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: 'DEBUG=1 __cplusplus'."
 				},
 				"cpp-check-lint.cppcheck.-U": {
@@ -315,6 +316,7 @@
 						"DUBUG",
 						"WIN32"
 					],
+					"default": [],
 					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: 'DEBUG'"
 				},
 				"cpp-check-lint.cpplint.--enable": {
@@ -325,7 +327,7 @@
 				"cpp-check-lint.cpplint.--executable": {
 					"type": "string",
 					"default": "cpplint",
-					"description": "The path to the cpplint executable(builtin binaries will be used if empty or cpplint)."
+					"description": "The path to the cpplint executable(builtin binaries will be used if empty or run error)."
 				},
 				"cpp-check-lint.cpplint.--quick_fix": {
 					"type": "boolean",
@@ -368,7 +370,8 @@
 					"enum": [
 						"total",
 						"toplevel",
-						"detailed"
+						"detailed",
+						""
 					],
 					"description": "counting=total|toplevel|detailed\r\n  The total number of errors found is always printed. If\r\n  'toplevel' is provided, then the count of errors in each of\r\n  the top-level categories like 'build' and 'whitespace' will\r\n  also be printed. If 'detailed' is provided, then a count\r\n  is provided for each category like 'build/class'."
 				},

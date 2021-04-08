@@ -83,7 +83,7 @@ class code_base {
      * @param {string} exe_name_linux
      */
     add_root_path(root_path, exe_name_win, exe_name_linux) {
-        log.debug(exe_name_win, exe_name_linux)
+        log.debug("exe_name_win : [" + exe_name_win + "], exe_name_linux : [" + exe_name_linux + "]")
         let platform = os.platform();
         root_path = path.join(root_path, "bin")
         if (platform === 'win32') {

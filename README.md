@@ -4,7 +4,7 @@ Support cppcheck and cpplint
 
 ## Features
 
- * cppcheck:
+ * cppcheck/cpplint:
     * editor/context      
         * check current file    
         * check the directory of the current file    
@@ -17,19 +17,6 @@ Support cppcheck and cpplint
         * cmd  
     * OnSave/QuickFix
 
-* cpplint:
-    * editor/context      
-        * check current file    
-        * check the directory of the current file    
-        * cmd :    
-            * clear all    
-            * clear current file    
-            * stop check    
-    * explorer/context    
-        * check directory || check current file
-        * cmd
-    * OnSave/QuickFix
-
 ## Requirements
 
 * cpplint : https://github.com/cpplint/cpplint
@@ -38,9 +25,62 @@ Support cppcheck and cpplint
 
 ## Extension Settings
 
-* if cppcheck path set "cppcheck" will use builtin binaries (cppcheck 2.4.1)
+ * Executable file selection logic    
+ ``` 
+    
+    if (cppcheck configure is null) {
+        use builtin binaries
+    } else {
+        if( ("path to executable" --version).trim().toLowerCase().startsWith("cppcheck") ){
+            use "path to executable"
+        } else {
+           use builtin binaries 
+        }
+    }
 
-* if cpplint path set "cpplint" will use builtin binaries (cpplint 1.5.4)
+    if (cpplint configure is null) {
+        use builtin binaries
+    } else {
+        if("path to executable"){
+            use "path to executable"
+        } else {
+           use builtin binaries 
+        }
+    } 
+```
+
+* cpplint dir
+
+   cpplint version need support "--recursive"
+
+* OnSave
+
+    suggest use with clang-format
+
+* QuickFix
+
+    It's just suppresses alarms
+
+* Configure
+    > skip flag
+    >> | type | value | 
+    >> |:----:|:-----:|
+    >> |bool|false|
+    >> |string|""|
+    >> |number|null|
+    >> |object|null|
+    >> ||||
+
+* builtin binaries(cppcheck 2.4.1, cpplint 1.5.4)
+    > support  
+    >> | Os | Bit | Version | 
+    >> |:--:|:---:|:--------|
+    >> |Ubuntu|64|16.04+|
+    >> |Debian|64|9+|
+    >> |CentOS|64|7+|
+    >> |RHEL|64|7+|
+    >> |windows|64|7+|
+    >> ||||
 
 ## Known Issues
 
@@ -56,22 +96,6 @@ Support cppcheck and cpplint
 
 ## Release Notes
 
-### 1.2.8
-    First Release VS Code Version 1.5.3 
-### 1.3.0
-    support quick-fix
-    support check/lint on save
-### 1.3.1
-    bug fix
-### 1.3.2
-    bug fix
-### 1.3.3
-    cppcheck show cwe id
-
-### 1.3.4
-    builtin binaries cppcheck update to 2.4.1
-
-### 1.3.5
-    If the configuration is empty, the code will not give the default configuration.
+* CHANGELOG.md
 -----------------------------------------------------------------------------------------------------------
 

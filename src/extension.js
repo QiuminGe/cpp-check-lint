@@ -24,10 +24,10 @@ function activate(context) {
 	}
 	log.info("context.asAbsolutePath : " + context.extensionPath);
 
-	let support_language = ["cpp","c","h","hh","hpp","h++","cc"];
-	
+	let support_language = ["cpp", "c", "h", "hh", "hpp", "h++", "cc"];
+
 	cppcheck_obj.set_root_path(context.extensionPath);
-	
+
 	cpplint_obj.set_root_path(context.extensionPath);
 
 	let disposable = vscode.commands.registerCommand('cpp-check-lint.cppcheck', (url) => { cppcheck_obj.activate(context, url, true); });
@@ -60,22 +60,22 @@ function activate(context) {
 	disposable = vscode.workspace.onDidSaveTextDocument(function (event) {
 
 		log.info("onDidSaveTextDocument : " + event.uri.fsPath);
-		if (cppcheck_obj.onsave){
-			for(let i = 0; i < support_language.length; i++) {
-				if (event.uri.fsPath.endsWith("."+ support_language[i])){
+		if (cppcheck_obj.onsave) {
+			for (let i = 0; i < support_language.length; i++) {
+				if (event.uri.fsPath.endsWith("." + support_language[i])) {
 					cppcheck_obj.activate(context, event.uri, true);
 					break;
 				}
-			} 
+			}
 
 		}
-		if (cpplint_obj.onsave){
-			for(let i = 0; i < support_language.length; i++) {
-				if (event.uri.fsPath.endsWith("."+ support_language[i])){
+		if (cpplint_obj.onsave) {
+			for (let i = 0; i < support_language.length; i++) {
+				if (event.uri.fsPath.endsWith("." + support_language[i])) {
 					cpplint_obj.activate(context, event.uri, true);
 					break;
 				}
-			} 
+			}
 		}
 	})
 	context.subscriptions.push(disposable);
@@ -83,13 +83,13 @@ function activate(context) {
 	if ("win32" != os.platform()) {
 		let cmd = 'chmod +x ';
 		let arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cppcheck");
-		let res = common.runCmd_sync(cmd + arg);
-		log.info(cmd + " " + arg + " -> "+ res);
+		let res = common.runCmd_execSync(cmd + arg);
+		log.info(cmd + " " + arg + " -> " + res);
 		arg = path.join(path.join(path.join(context.extensionPath, "bin"), "linux64"), "cpplint.py");
-		res = common.runCmd_sync(cmd + arg);
-		log.info(cmd + " " + arg + " -> "+ res);
+		res = common.runCmd_execSync(cmd + arg);
+		log.info(cmd + " " + arg + " -> " + res);
 		cmd = 'pwd';
-		res = common.runCmd_sync(cmd);
+		res = common.runCmd_execSync(cmd);
 		log.info(cmd + "->" + res);
 	}
 
