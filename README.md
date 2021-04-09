@@ -62,7 +62,7 @@ Support cppcheck and cpplint
     It's just suppresses alarms
 
 * Configure
-    > skip flag
+    > skip unsupported flag
     >> | type | value | 
     >> |:----:|:-----:|
     >> |bool|false|
@@ -71,7 +71,7 @@ Support cppcheck and cpplint
     >> |object|null|
 
 * builtin binaries(cppcheck 2.4.1, cpplint 1.5.4)
-    > support  
+    > support  (**linux cpplint need python**)
     >> | Os | Bit | Version | 
     >> |:--:|:---:|:--------|
     >> |Ubuntu|64|16.04+|
