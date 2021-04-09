@@ -8,7 +8,7 @@
 
 ## Features
 
- * cppcheck/cpplint:s
+ * cppcheck/cpplint:
     * editor/context      
         * check current file    
         * check the directory of the current file    
