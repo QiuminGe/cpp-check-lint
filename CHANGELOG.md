@@ -46,3 +46,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - update readme
 - cppcheck / cpplint support customargs
 - cpplint lintdir param support cfg
+
+## [v1.3.8] - 2021-04-09
+### Changed
+- Update Readme
