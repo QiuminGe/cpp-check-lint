@@ -55,11 +55,21 @@
 
 * cpplint dir
 
-   cpplint version need support "--recursive"
+ ``` 
+   if ( cpplint version support "--recursive") {
+        set --recursive true
+    } else {
+       set "--recursive" false
+       set "--lintdir"
+    }
+ ``` 
+
+* customargs
+    If the configuration parameters cannot be satisfied, use custom configuration "--customargs="
 
 * OnSave
 
-    suggest use with clang-format
+    cpplint suggest use with clang-format
 
 * QuickFix
 
