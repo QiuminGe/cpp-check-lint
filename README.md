@@ -1,10 +1,14 @@
-# cpp-check-lint README
+# cpp-check-lint
 
-Support cppcheck and cpplint
+[![GitHub release](https://img.shields.io/github/release/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/releases)
+[![GitHub license](https://img.shields.io/github/license/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/QiuminGe/cpp-check-lint?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/stargazers)
+[![GitHub fork](https://img.shields.io/github/forks/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/issues)
 
 ## Features
 
- * cppcheck/cpplint:
+ * cppcheck/cpplint:s
     * editor/context      
         * check current file    
         * check the directory of the current file    
@@ -92,8 +96,7 @@ Support cppcheck and cpplint
 
 * https://github.com/QiuminGe/cpp-check-lint
 
-## Release Notes
+##  [Release Notes](https://github.com/QiuminGe/cpp-check-lint/blob/main/CHANGELOG.md)
 
-* CHANGELOG.md
 -----------------------------------------------------------------------------------------------------------
 
