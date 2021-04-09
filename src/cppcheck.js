@@ -22,7 +22,7 @@ class cppcheck {
 
     get_cfg() {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
-            "--template={file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
+            this.base.get_cfg(this.settings, "--template=", true),
             this.base.get_cfg(this.settings, "--enable=", true),
             this.base.get_cfg(this.settings, "--inconclusive", false),
             this.base.get_cfg(this.settings, "-j", true),
@@ -32,7 +32,8 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--std_c++=", true, null, "--std="),
             this.base.get_cfg(this.settings, "--inline-suppr", true),
             this.base.get_cfg(this.settings, "--suppressions-list=", true),
-            this.base.get_cfg(this.settings, "--report-progress", true)
+            this.base.get_cfg(this.settings, "--report-progress", true),
+            this.base.get_cfg(this.settings, "--customargs=", false)
         );
 
         let exclude = this.base.get_cfg(this.settings, "-i ", false, []);

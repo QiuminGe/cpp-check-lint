@@ -21,13 +21,14 @@ class cpplint {
 
     get_cfg(root_path) {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
-            "--output=eclipse",
+            this.base.get_cfg(this.settings, "--output=", true),
             this.base.get_cfg(this.settings, "--counting=", true),
             this.base.get_cfg(this.settings, "--extensions=", true),
             this.base.get_cfg(this.settings, "--headers=", true),
             this.base.get_cfg(this.settings, "--verbose=", true),
             this.base.get_cfg(this.settings, "--filter=", true),
-            this.base.get_cfg(this.settings, "--linelength=", true)
+            this.base.get_cfg(this.settings, "--linelength=", true),
+            this.base.get_cfg(this.settings, "--customargs=", false)
         );
 
         let exclude = this.base.get_cfg(this.settings, "--exclude=", false, []);
@@ -69,13 +70,17 @@ class cpplint {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
         this.quick_fix = this.base.get_cfg(this.settings, "--quick_fix", false, true);
         this.onsave = this.base.get_cfg(this.settings, "--onsave", false, true);
+        this.lintdirparm = this.base.get_cfg(this.settings, "--recursive", true);
+        if ("--recursive" != this.lintdirparm) {
+            this.lintdirparm = this.base.get_cfg(this.settings, "--lintdir=", false);
+        }
         this.cmd_ary = this.get_cfg();
     }
 
     get_full_cmd(dest_path, isFile) {
         let res = this.cmd_ary.slice(0);
-        if (!isFile) {
-            res.push("--recursive");
+        if (!isFile && !common.is_empty_str(this.lintdirparm)) {
+            res.push(this.lintdirparm);
         }
         res.push(dest_path);
         return res;
@@ -170,6 +175,9 @@ class cpplint {
                 file_dict[file_name] = [];
             }
             file_dict[file_name].push(regexArray);
+        }
+        if (0 == Object.keys(file_dict).length) {
+            this.base.channel.appendLine(result)
         }
         return file_dict;
     }

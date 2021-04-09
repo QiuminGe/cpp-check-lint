@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.3.6",
+	"version": "1.3.7",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -168,6 +168,11 @@
 						"Debug"
 					]
 				},
+				"cpp-check-lint.cppcheck.--customargs=": {
+					"type": "string",
+					"default": "",
+					"description": "customargs"
+				},
 				"cpp-check-lint.cppcheck.--enable": {
 					"type": "boolean",
 					"default": true,
@@ -276,6 +281,13 @@
 						"c++20"
 					]
 				},
+				"cpp-check-lint.cppcheck.--template=": {
+					"type": "string",
+					"default": "{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
+					"enum": [
+						"{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]"
+					]
+				},
 				"cpp-check-lint.cppcheck.--max-ctu-depth=": {
 					"type": [
 						"number",
@@ -324,10 +336,20 @@
 					"default": true,
 					"description": "Enable or disable the cpplint"
 				},
+				"cpp-check-lint.cpplint.--customargs=": {
+					"type": "string",
+					"default": "",
+					"description": "customargs"
+				},
 				"cpp-check-lint.cpplint.--executable": {
 					"type": "string",
 					"default": "cpplint",
 					"description": "The path to the cpplint executable(builtin binaries will be used if empty or run error)."
+				},
+				"cpp-check-lint.cpplint.--lintdir=": {
+					"type": "string",
+					"default": "",
+					"description": "The param for lint dir."
 				},
 				"cpp-check-lint.cpplint.--quick_fix": {
 					"type": "boolean",
@@ -401,9 +423,6 @@
 				"cpp-check-lint.cpplint.--recursive": {
 					"type": "boolean",
 					"default": true,
-					"enum": [
-						true
-					],
 					"description": "Search for files to lint recursively. Each directory given in the list\r\nof files to be linted is replaced by all files that descend from that\r\ndirectory. Files with extensions not in the valid extensions list are\r\nexcluded."
 				},
 				"cpp-check-lint.cpplint.--exclude=": {

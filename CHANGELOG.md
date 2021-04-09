@@ -39,3 +39,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - make clear executable file selection logic
 - update readme
+
+## [v1.3.7] - 2021-04-09
+### Changed
+- cpplint execution error is displayed on the output panel
+- update readme
+- cppcheck / cpplint support customargs
+- cpplint lintdir param support cfg
