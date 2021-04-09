@@ -44,3 +44,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - cpplint execution error is displayed on the output panel
 - update readme
+- cppcheck / cpplint support customargs
+- cpplint lintdir param support cfg
