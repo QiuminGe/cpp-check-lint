@@ -50,3 +50,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.3.8] - 2021-04-09
 ### Changed
 - Update Readme
+
+## [v1.3.9] - 2021-04-20
+### Changed
+- Update Readme
