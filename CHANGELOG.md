@@ -54,3 +54,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.3.9] - 2021-04-28
 ### Changed
 - Fixed sonerqube check problem
+## [v1.3.9] - 2021-04-20
+### Changed
+- Update Readme
