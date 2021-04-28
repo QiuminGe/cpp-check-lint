@@ -38,36 +38,36 @@ class cppcheck {
 
         let exclude = this.base.get_cfg(this.settings, "-i ", false, []);
         if (0 != exclude.length) {
-            for (let index = 0; index < exclude.length; index++) {
-                if (!common.is_empty_str(exclude[index])) {
-                    res.push("-i" + this.base.to_full_name(exclude[index]))
+            for (let value of exclude) {
+                if (!common.is_empty_str(value)) {
+                    res.push("-i" + this.base.to_full_name(value))
                 }
             }
         }
 
         let suppress = this.base.get_cfg(this.settings, "--suppress=", false, []);
         if (0 != suppress.length) {
-            for (let index = 0; index < suppress.length; index++) {
-                if (!common.is_empty_str(suppress[index])) {
-                    res.push("--suppress=" + suppress[index]);
+            for (let value of suppress) {
+                if (!common.is_empty_str(value)) {
+                    res.push("--suppress=" + value);
                 }
             }
         }
 
         let D = this.base.get_cfg(this.settings, "-D", false, []);
         if (0 != D.length) {
-            for (let index = 0; index < D.length; index++) {
-                if (!common.is_empty_str(D[index])) {
-                    res.push("-D" + D[index]);
+            for (let value of D) {
+                if (!common.is_empty_str(value)) {
+                    res.push("-D" + value);
                 }
             }
         }
 
         let U = this.base.get_cfg(this.settings, "-U", false, []);
         if (0 != U.length) {
-            for (let index = 0; index < U.length; index++) {
-                if (!common.is_empty_str(U[index])) {
-                    res.push("-U" + U[index]);
+            for (let value of U) {
+                if (!common.is_empty_str(value)) {
+                    res.push("-U" + value);
                 }
             }
         }
@@ -95,7 +95,7 @@ class cppcheck {
                     else {
                         log.info("use [" + version.trim() + "]")
                     }
-                };
+                }
             }
         }
 
@@ -256,8 +256,7 @@ class cppcheck {
             }
 
             vscode.workspace.openTextDocument(file_name).then((doc) => {
-                for (let index = 0; index < file_dict[file_name].length; index++) {
-                    let array = file_dict[file_name][index];
+                for (let array of file_dict[file_name]) {
                     let line = Number(array[2]);
                     if (line > 0) {
                         line--;
@@ -269,8 +268,7 @@ class cppcheck {
                 log.debug("diagnosticCollection set : " + doc.uri);
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
             }, err => {
-                for (let index = 0; index < file_dict[file_name].length; index++) {
-                    let array = file_dict[file_name][index];
+                for (let array of file_dict[file_name]) {
                     let column = Number(array[3]);
                     diagnostics.push(this.to_diagnostics(array, column));
                 }

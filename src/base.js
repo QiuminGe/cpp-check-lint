@@ -177,7 +177,7 @@ class code_base {
             items.push("clear current");
         } else {
             items.push("clear all");
-        };
+        }
         vscode.window.showInformationMessage(message, ...items)
             .then(function (select) {
                 this.do_cmd(context, url, select);

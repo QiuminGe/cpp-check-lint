@@ -49,8 +49,8 @@ function activate(context) {
 	context.subscriptions.push(disposable);
 
 	disposable = vscode.workspace.onDidChangeConfiguration(function (event) {
-		let settings = vscode.workspace.getConfiguration('cpp-check-lint');
-		log.setLogLevel(settings.get('--log'));
+		let new_settings = vscode.workspace.getConfiguration('cpp-check-lint');
+		log.setLogLevel(new_settings.get('--log'));
 		log.info("onDidChangeConfiguration");
 		cppcheck_obj.update_setting();
 		cpplint_obj.update_setting();
@@ -61,8 +61,8 @@ function activate(context) {
 
 		log.info("onDidSaveTextDocument : " + event.uri.fsPath);
 		if (cppcheck_obj.onsave) {
-			for (let i = 0; i < support_language.length; i++) {
-				if (event.uri.fsPath.endsWith("." + support_language[i])) {
+			for (let value of support_language) {
+				if (event.uri.fsPath.endsWith("." + value)) {
 					cppcheck_obj.activate(context, event.uri, true);
 					break;
 				}
@@ -70,8 +70,8 @@ function activate(context) {
 
 		}
 		if (cpplint_obj.onsave) {
-			for (let i = 0; i < support_language.length; i++) {
-				if (event.uri.fsPath.endsWith("." + support_language[i])) {
+			for (let value of support_language) {
+				if (event.uri.fsPath.endsWith("." + value)) {
 					cpplint_obj.activate(context, event.uri, true);
 					break;
 				}
