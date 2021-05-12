@@ -51,8 +51,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - Update Readme
 
-## [v1.3.9] - 2021-04-28
+## [v1.3.9] - 2021-05-12
 ### Changed
 - Update Readme
 - Fixed sonerqube check problem
+- cppcheck template argument add a single quote
 
