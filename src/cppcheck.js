@@ -9,7 +9,7 @@ class cppcheck {
         this.name = "cppcheck";
         this.base = new base.code_base(this.name);
         //"--template={file}:{line}:{column}: {severity}: {message}:[{id}]",
-        this.regex = /^(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]'$/gm;
+        this.regex = /^'(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]'$/gm;
     }
 
     /**
