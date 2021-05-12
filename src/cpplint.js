@@ -33,9 +33,9 @@ class cpplint {
 
         let exclude = this.base.get_cfg(this.settings, "--exclude=", false, []);
         if (0 != exclude.length) {
-            for (let index = 0; index < exclude.length; index++) {
-                if (!common.is_empty_str(exclude[index])) {
-                    res.push("--exclude=" + this.base.to_full_name(exclude[index]))
+            for (let value of exclude) {
+                if (!common.is_empty_str(value)) {
+                    res.push("--exclude=" + this.base.to_full_name(value))
                 }
             }
         }
@@ -196,8 +196,7 @@ class cpplint {
             }
 
             vscode.workspace.openTextDocument(file_name).then((doc) => {
-                for (let index = 0; index < file_dict[file_name].length; index++) {
-                    let array = file_dict[file_name][index];
+                for (let array of file_dict[file_name]) {
                     let line = Number(array[2]);
                     if (line > 0) {
                         line--;
@@ -208,8 +207,7 @@ class cpplint {
                 this.base.diagnosticCollection.set(doc.uri, diagnostics);
                 log.debug("diagnosticCollection set : " + doc.uri);
             }, err => {
-                for (let index = 0; index < file_dict[file_name].length; index++) {
-                    let array = file_dict[file_name][index];
+                for (let array of file_dict[file_name]) {
                     diagnostics.push(this.to_diagnostics(array, 0));
                 }
                 this.base.diagnosticCollection.set(vscode.Uri.file(file_name), diagnostics);

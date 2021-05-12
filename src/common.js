@@ -15,7 +15,7 @@ function is_empty_str(str) {
  * @param {object} obj
  */
 function is_empty_obj(obj) {
-    if ((typeof (obj) === 'undefined' || obj === null || obj === "")) {
+    if ((typeof (obj) === 'undefined' || obj === null || obj == "")) {
         return true;
     }
 
@@ -44,7 +44,7 @@ function remove_empty(arr) {
         }
     }
     return arr;
-};
+}
 
 /**
  * @param {{clear: () => void;appendLine: (arg0: string) => void;}} channel
@@ -54,7 +54,6 @@ function remove_empty(arr) {
  * @param {{ (arg0: number): any; call: (arg0: any, arg1: number) => any; }} exit_cb
  */
 function runCmd(channel, params, err_cb, out_cb, exit_cb, callbackobj = null) {
-    // channel.clear();
     let cmd = params.shift() || "echo";
     channel.appendLine('executing: ' + cmd + ' ' + params.join(' '));
     const spawn = child_process.spawn(cmd, params);
