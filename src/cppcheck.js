@@ -132,7 +132,7 @@ class cppcheck {
             column = 0;
         }
         let severity = array[4];
-        let message = array[5].replace("CWE-{cwe} ", "")
+        let message = array[5].replace("CWE-{cwe} ", "");
         let source = array[6];
         if (line > 0) {
             line--;
