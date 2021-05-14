@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -283,9 +283,9 @@
 				},
 				"cpp-check-lint.cppcheck.--template=": {
 					"type": "string",
-					"default": "'{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]'",
+					"default": "{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
 					"enum": [
-						"'{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]'"
+						"{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]"
 					]
 				},
 				"cpp-check-lint.cppcheck.--max-ctu-depth=": {
