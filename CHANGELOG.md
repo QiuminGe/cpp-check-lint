@@ -51,11 +51,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - Update Readme
 
-## [v1.3.9] - 2021-05-12
-### Changed
-- Update Readme
-- Fixed sonerqube check problem
-- cppcheck template argument add a single quote
+~~## [v1.3.9] - 2021-05-12~~
+
+~~### Changed~~
+
+~~- Update Readme~~
+
+~~- Fixed sonerqube check problem~~
+
+~~- cppcheck template argument add a single quote~~
 ## [v1.4.0] - 2021-05-12
 ### Changed
-replace [v1.3.9] 
+- replace [v1.3.9] 
+
+## [v1.4.1] - 2021-05-14
+### Changed
+- rollback "cppcheck template argument add a single quote"
+- fixed cppckeck version less than 1.72 "template" is not supported "{column}", then Regular expression parsing failed.
+- fixed some cppckeck version not support CWE-ID

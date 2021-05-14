@@ -9,7 +9,7 @@ class cppcheck {
         this.name = "cppcheck";
         this.base = new base.code_base(this.name);
         //"--template={file}:{line}:{column}: {severity}: {message}:[{id}]",
-        this.regex = /^'(.*):(\d+):(\d+):\s(\w+):\s(.*):\[([A-Za-z]+)\]'$/gm;
+        this.regex = /^(.*):(\d+):(\d+|{column}):\s(\w+):\s(.*):\[([A-Za-z]+)\]$/gm;
     }
 
     /**
@@ -128,8 +128,11 @@ class cppcheck {
     to_diagnostics(array, length) {
         let line = Number(array[2]);
         let column = Number(array[3]);
+        if (column != column) {
+            column = 0;
+        }
         let severity = array[4];
-        let message = array[5];
+        let message = array[5].replace("CWE-{cwe} ", "");
         let source = array[6];
         if (line > 0) {
             line--;
