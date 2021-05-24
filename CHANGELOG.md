@@ -69,3 +69,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - rollback "cppcheck template argument add a single quote"
 - fixed cppckeck version less than 1.72 "template" is not supported "{column}", then Regular expression parsing failed.
 - fixed some cppckeck version not support CWE-ID
+
+## [v1.4.2] - 2021-05-24
+### Changed
+- support addons
