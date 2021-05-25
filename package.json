@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.2",
+	"version": "1.4.3",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -168,16 +168,16 @@
 						"Debug"
 					]
 				},
-				"cpp-check-lint.cppcheck.--addon=":{
+				"cpp-check-lint.cppcheck.--addon=": {
 					"type": "array",
 					"default": [],
-					"examples": ["cert","misra","y2038","threadsafety"],
+					"examples": [
+						"cert",
+						"misra",
+						"y2038",
+						"threadsafety"
+					],
 					"description": "Execute addon. i.e. [\"cert\",\"misra\"]"
-				},
-				"cpp-check-lint.cppcheck.--addonpath=":{
-					"type": "string",
-					"default": "",
-					"description": "if not set addonpath, The path where cppcheck.exe is located will be used."
 				},
 				"cpp-check-lint.cppcheck.--customargs=": {
 					"type": "string",
@@ -331,7 +331,7 @@
 						"WIN32"
 					],
 					"default": [],
-					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: 'DEBUG=1 __cplusplus'."
+					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: [DEBUG,WIN32]."
 				},
 				"cpp-check-lint.cppcheck.-U": {
 					"type": "array",
@@ -340,7 +340,7 @@
 						"WIN32"
 					],
 					"default": [],
-					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: 'DEBUG'"
+					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: '[DEBUG,WIN32]'"
 				},
 				"cpp-check-lint.cpplint.--enable": {
 					"type": "boolean",
@@ -443,7 +443,7 @@
 						"src/utils"
 					],
 					"default": [],
-					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:\r\n    --exclude=one.cc\r\n    --exclude=src/*.cc\r\n    --exclude=src/*.cc --exclude=test/*.cc"
+					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:'[\"one.cc\",\"build\",\"test/*.cc\"]'"
 				},
 				"cpp-check-lint.cpplint.--extensions=": {
 					"type": "string",
