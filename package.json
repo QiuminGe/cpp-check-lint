@@ -168,13 +168,18 @@
 						"Debug"
 					]
 				},
-				"cpp-check-lint.cppcheck.--addon=":{
+				"cpp-check-lint.cppcheck.--addon=": {
 					"type": "array",
 					"default": [],
-					"examples": ["cert","misra","y2038"],
+					"examples": [
+						"cert",
+						"misra",
+						"y2038",
+						"threadsafety"
+					],
 					"description": "Execute addon. i.e. [\"cert\",\"misra\"]"
 				},
-				"cpp-check-lint.cppcheck.--addonpath=":{
+				"cpp-check-lint.cppcheck.--addonpath=": {
 					"type": "string",
 					"default": "",
 					"description": "if not set addonpath, The path where cppcheck.exe is located will be used."
