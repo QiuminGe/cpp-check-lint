@@ -73,3 +73,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.4.2] - 2021-05-24
 ### Changed
 - support addons
+
+## [v1.4.3] - 2021-05-25
+### Removed
+-  addons path cfg

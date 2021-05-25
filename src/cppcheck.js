@@ -37,7 +37,7 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--suppressions-list=", true),
             this.base.get_cfg(this.settings, "--report-progress", true),
             this.base.get_cfg(this.settings, "--customargs=", false),
-            
+
         );
 
         let exclude = this.base.get_cfg(this.settings, "-i ", false, []);
@@ -102,18 +102,12 @@ class cppcheck {
                 }
             }
         }
-        
 
-        let addons_dir = this.base.get_cfg(this.settings, "--addonpath=", false);
-        if(common.is_empty_str(addons_dir)){
-            addons_dir = path.join(path.dirname(res[0]),"addons");
-        }
-        log.info("addons dir is [" + addons_dir + "]")
         let addon = this.base.get_cfg(this.settings, "--addon=", false, []);
         if (0 != addon.length) {
             for (let value of addon) {
                 if (!common.is_empty_str(value)) {
-                    res.push("--addon=" + path.join(addons_dir,value));
+                    res.push("--addon=" + value);
                 }
             }
         }
