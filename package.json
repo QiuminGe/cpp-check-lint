@@ -172,12 +172,12 @@
 					"type": "array",
 					"default": [],
 					"examples": [
-						"cert",
-						"misra",
-						"y2038",
-						"threadsafety"
+						{"cert":[]},
+						{"misra":["--rule-text=misra.txt"]},
+						{"y2038":[]},
+						{"threadsafety":[]}
 					],
-					"description": "Execute addon. i.e. [\"cert\",\"misra\"]"
+					"description": "Execute addon. i.e. [{\"cert\":[],{\"misra\":[\"--rule-text=misra.txt\"]}]"
 				},
 				"cpp-check-lint.cppcheck.--customargs=": {
 					"type": "string",
