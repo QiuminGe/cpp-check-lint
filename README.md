@@ -77,13 +77,9 @@
             "--rule-texts=/home/user/misra.txt"
         ]
     }
-
-    "--rule-texts=/home/user/misra.txt" (need Absolute path, and use "/" or "\\" to split paths)
-
+    "--rule-texts=/home/user/misra.txt" (need absolute path, and use "/" or "\\" to split paths)
     If ${workspace folder} is included, it will be replaced.
-
-    "args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"]  -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
-
+    "args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"] -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
     ```
 *  Cpplint:--executable
     ```
@@ -93,7 +89,7 @@
             if("path to executable"){
                 use "path to executable"
             } else {
-            use builtin binaries 
+                use builtin binaries 
             }
         } 
     ```
@@ -103,8 +99,8 @@
         if ( cpplint version support "--recursive") {
                 set --recursive true
             } else {
-            set "--recursive" false
-            set "--lintdir"
+                set "--recursive" false
+                set "--lintdir"
         }
     ``` 
 
