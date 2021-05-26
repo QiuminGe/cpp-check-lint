@@ -58,7 +58,7 @@
         "C:\\UsersAdministrator\\hreadsafety.json"
     ]
     ```
-    "addon" and "anndon.py" will use addons folder under the same level folder as cppcheck . 
+    "addon" and "addon.py" will use addons folder under the same level folder as cppcheck . 
 
     ```
     [rorot@cpppcheck]$ tree | grep -E " cppcheck.exe| addons| misra.py| y2038.py| cert.py| threadsafety.py"
