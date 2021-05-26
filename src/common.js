@@ -5,6 +5,9 @@ const log = require('./log');
  * @param {string} str
  */
 function is_empty_str(str) {
+    if ("string" != typeof (str)) {
+        return true;
+    }
     if (str != null && str.trim().length > 0) {
         return false;
     }
