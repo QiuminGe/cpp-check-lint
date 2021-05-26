@@ -27,11 +27,12 @@
 
 * cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
 
+* cppcheck : http://cppcheck.sourceforge.net/manual.html
+
 ## Extension Settings
 
- * Executable file selection logic    
+ * Cppcheck:--executable   
  ``` 
-    
     if (cppcheck configure is null) {
         use builtin binaries
     } else {
@@ -41,28 +42,71 @@
            use builtin binaries 
         }
     }
-
-    if (cpplint configure is null) {
-        use builtin binaries
-    } else {
-        if("path to executable"){
-            use "path to executable"
-        } else {
-           use builtin binaries 
-        }
-    } 
 ```
+ * Cppcheck:--addon= 
 
-* cpplint dir
+    ```json
+    [
+        "cert", 
+        {
+            "script": "misra.py", 
+            "args": [
+                "--rule-texts=/home/user/misra.txt"
+            ]
+        }, 
+        "y2038.py", 
+        "C:\\UsersAdministrator\\hreadsafety.json"
+    ]
+    ```
+    "addon" and "anndon.py" will use addons folder under the same level folder as cppcheck . 
 
- ``` 
-   if ( cpplint version support "--recursive") {
-        set --recursive true
-    } else {
-       set "--recursive" false
-       set "--lintdir"
+    ```
+    [rorot@cpppcheck]$ tree | grep -E " cppcheck.exe| addons| misra.py| y2038.py| cert.py| threadsafety.py"
+    ├── addons
+    │   ├── cert.py
+    │   ├── misra.py
+    │   ├── threadsafety.py
+    │   └── y2038.py
+    ├── cppcheck.exe
+    ```
+     Some addons need extra arguments. You can configure json or json file.
+    ```
+    {
+        "script": "misra.py",
+        "args": [
+            "--rule-texts=/home/user/misra.txt"
+        ]
     }
- ``` 
+
+    "--rule-texts=/home/user/misra.txt" (need Absolute path, and use "/" or "\\" to split paths)
+
+    If ${workspace folder} is included, it will be replaced.
+
+    "args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"]  -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
+
+    ```
+*  Cpplint:--executable
+    ```
+        if (cpplint configure is null) {
+            use builtin binaries
+        } else {
+            if("path to executable"){
+                use "path to executable"
+            } else {
+            use builtin binaries 
+            }
+        } 
+    ```
+* Cpplint:--recursive
+* Cpplint:--lintdir
+    ``` 
+        if ( cpplint version support "--recursive") {
+                set --recursive true
+            } else {
+            set "--recursive" false
+            set "--lintdir"
+        }
+    ``` 
 
 * customargs
 

@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.3",
+	"version": "1.4.4",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -173,11 +173,16 @@
 					"default": [],
 					"examples": [
 						"cert",
-						"misra",
-						"y2038",
-						"threadsafety"
+						{
+							"script": "misra.py",
+							"args": [
+								"--rule-texts=/home/user/misra.txt"
+							]
+						},
+						"y2038.py",
+						"C:\\UsersAdministrator\\hreadsafety.json"
 					],
-					"description": "Execute addon. i.e. [\"cert\",\"misra\"]"
+					"description": "see ReadMe"
 				},
 				"cpp-check-lint.cppcheck.--customargs=": {
 					"type": "string",

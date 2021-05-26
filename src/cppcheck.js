@@ -106,8 +106,17 @@ class cppcheck {
         let addon = this.base.get_cfg(this.settings, "--addon=", false, []);
         if (0 != addon.length) {
             for (let value of addon) {
-                if (!common.is_empty_str(value)) {
-                    res.push("--addon=" + value);
+                if ("string" == typeof (value)) {
+                    if (!common.is_empty_str(value)) {
+                        res.push("--addon=" + value);
+                    }
+                }
+                else {
+                    let addon_json = JSON.stringify(value);
+                    let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
+                    workspaceFolder = workspaceFolder.replace(/\\/g, "/")
+                    addon_json = addon_json.replace("${workspaceFolder}", workspaceFolder)
+                    res.push("--addon=" + addon_json);
                 }
             }
         }
