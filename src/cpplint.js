@@ -19,7 +19,7 @@ class cpplint {
         this.update_setting();
     }
 
-    get_cfg(root_path) {
+    get_cfg() {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
             this.base.get_cfg(this.settings, "--output=", true),
             this.base.get_cfg(this.settings, "--counting=", true),
