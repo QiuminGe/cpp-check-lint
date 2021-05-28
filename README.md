@@ -23,11 +23,40 @@
 
 ## Requirements
 
-* cpplint : https://github.com/cpplint/cpplint
+### cppcheck
+* Install from source
+    ```
+    http://cppcheck.net/
+    ```
+* Install for yum/apt_get/brew : 
+    ```
+    sudo apt-get install cppcheck
+    sudo yum install cppcheck
+    brew install cppcheck
+    ```
+* help    
+   http://cppcheck.sourceforge.net/manual.html
+### cpplint
 
-* cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
+* Install from source
+    ```
+    https://github.com/cpplint/cpplint
+    ```
+* Install from pip
+    ```
+    pip install cpplint
+    ```
+### builtin binaries
 
-* cppcheck : http://cppcheck.sourceforge.net/manual.html
+* (cppcheck 2.4.1, cpplint 1.5.5)
+    > support  (**linux cpplint need python**)
+    >> | Os | Bit | Version | 
+    >> |:--:|:---:|:--------|
+    >> |Ubuntu|64|16.04+|
+    >> |Debian|64|9+|
+    >> |CentOS|64|7+|
+    >> |RHEL|64|7+|
+    >> |Windows|64|7+|
 
 ## Extension Settings
 
@@ -124,16 +153,6 @@
     >> |string|""|
     >> |number|null|
     >> |object|null|
-
-* builtin binaries(cppcheck 2.4.1, cpplint 1.5.4)
-    > support  (**linux cpplint need python**)
-    >> | Os | Bit | Version | 
-    >> |:--:|:---:|:--------|
-    >> |Ubuntu|64|16.04+|
-    >> |Debian|64|9+|
-    >> |CentOS|64|7+|
-    >> |RHEL|64|7+|
-    >> |Windows|64|7+|
 
 ## Known Issues
 
