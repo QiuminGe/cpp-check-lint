@@ -17,8 +17,7 @@ function activate(context) {
 	log.setLogLevel(settings.get('--log'));
 	if (settings.get('--enable') === true) {
 		log.info('start cpp-check-lint extension!');
-	}
-	else {
+	} else {
 		log.info('disable cpp-check-lint extension!');
 		return;
 	}

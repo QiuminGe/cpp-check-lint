@@ -2,9 +2,6 @@ const vscode = require("vscode");
 let common = require("./common");
 let base = require("./base");
 const log = require('./log');
-const path = require('path');
-const { throws } = require("assert");
-
 
 class cppcheck {
     constructor() {

@@ -51,15 +51,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - Update Readme
 
-~~## [v1.3.9] - 2021-05-12~~
-
-~~### Changed~~
-
-~~- Update Readme~~
-
-~~- Fixed sonerqube check problem~~
-
-~~- cppcheck template argument add a single quote~~
+~~## [v1.3.9] - 2021-05-12~~    
+~~### Changed~~    
+~~- Update Readme~~    
+~~- Fixed sonerqube check problem~~    
+~~- cppcheck template argument add a single quote~~    
 ## [v1.4.0] - 2021-05-12
 ### Changed
 - replace [v1.3.9] 
@@ -81,3 +77,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.4.4] - 2021-05-26
 ### Changed
 - modify addons readme
+
+## [v1.4.5] - 2021-05-28
+### Changed
+- modify readme
+- cpplint update to v1.5.5
