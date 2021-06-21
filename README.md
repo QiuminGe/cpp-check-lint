@@ -50,7 +50,9 @@
 
 ### builtin binaries
 
-* (cppcheck 2.4.1, cpplint 1.5.5)
+* cppcheck 2.4.1
+* cpplint 1.5.5
+
     > support  (**linux cpplint need python**)
     >> | Os | Bit | Version | 
     >> |:--:|:---:|:--------|
@@ -63,17 +65,17 @@
 ## Extension Settings
 
  * Cppcheck:--executable   
- ``` 
+    ``` 
     if (cppcheck configure is null) {
         use builtin binaries
     } else {
         if( ("path to executable" --version).trim().toLowerCase().startsWith("cppcheck") ){
             use "path to executable"
         } else {
-           use builtin binaries 
+        use builtin binaries 
         }
     }
-```
+    ```
  * Cppcheck:--addon= 
 
     ```json
@@ -114,25 +116,25 @@
     ```
 *  Cpplint:--executable
     ```
-        if (cpplint configure is null) {
-            use builtin binaries
+    if (cpplint configure is null) {
+        use builtin binaries
+    } else {
+        if("path to executable"){
+            use "path to executable"
         } else {
-            if("path to executable"){
-                use "path to executable"
-            } else {
-                use builtin binaries 
-            }
-        } 
+            use builtin binaries 
+        }
+    } 
     ```
 * Cpplint:--recursive
 * Cpplint:--lintdir
     ``` 
-        if ( cpplint version support "--recursive") {
-                set --recursive true
-            } else {
-                set "--recursive" false
-                set "--lintdir"
-        }
+    if ( cpplint version support "--recursive") {
+            set --recursive true
+        } else {
+            set "--recursive" false
+            set "--lintdir"
+    }
     ``` 
 
 * customargs
