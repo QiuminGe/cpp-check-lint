@@ -36,6 +36,7 @@
     ```
 * help    
    http://cppcheck.sourceforge.net/manual.html
+
 ### cpplint
 
 * Install from source
@@ -46,6 +47,7 @@
     ```
     pip install cpplint
     ```
+
 ### builtin binaries
 
 * (cppcheck 2.4.1, cpplint 1.5.5)
