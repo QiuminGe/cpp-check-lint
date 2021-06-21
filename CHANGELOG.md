@@ -82,3 +82,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - modify readme
 - cpplint update to v1.5.5
+
+## [v1.4.6] - 2021-06-21
+### Changed
+- update windows cpplint.exe (pyinstaller)
+- The status bar shows the progress for cppcheck

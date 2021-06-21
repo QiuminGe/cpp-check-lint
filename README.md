@@ -48,7 +48,7 @@
     pip install cpplint
     ```
 
-## builtin binaries
+### builtin binaries
 
 * cppcheck 2.4.1
 * cpplint 1.5.5

@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.5",
+	"version": "1.4.6",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
