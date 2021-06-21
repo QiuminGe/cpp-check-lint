@@ -190,11 +190,11 @@ class code_base {
         }
         this.diagnosticCollection.clear();
         this.channel.clear();
-        vscode.window.setStatusBarMessage("this.name + ' running...'");
     }
 }
 
 exports.code_base = code_base
 
+//https://code.visualstudio.com/api/references/vscode-api
 
 

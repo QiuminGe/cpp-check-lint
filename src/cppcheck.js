@@ -245,7 +245,7 @@ class cppcheck {
     /**
      * @param {string} result
      */
-    exec_res(result) {
+     exec_stderror_res(result) {
         let regexArray;
         let file_dict = {};
         while (regexArray = this.regex.exec(result)) {
@@ -268,7 +268,7 @@ class cppcheck {
      * @param {string} result
      */
     on_stderror(result) {
-        let file_dict = this.exec_res(result);
+        let file_dict = this.exec_stderror_res(result);
 
         for (let file_name in file_dict) {
             let diagnostics = [];
@@ -298,6 +298,17 @@ class cppcheck {
             });
         }
     }
+ 
+    /**
+     * @param {string} result
+     */
+     on_stdout(result) {
+        let stdout_regex = /^[0-9]*\/[0-9]* files checked [0-9]*% done$/gm;
+        if(stdout_regex.test(result)){
+            vscode.window.setStatusBarMessage(" " + result, 2000);
+        }
+     }
+    
 
     /**
      * @param {boolean} isFile
@@ -319,13 +330,13 @@ class cppcheck {
         }
         else {
             this.base.working = true;
-            vscode.window.setStatusBarMessage(this.name + ' running...', 3000);
+            vscode.window.setStatusBarMessage(this.name + ' running...',1000);
         }
 
         let dest_path = this.base.get_dest_path(isFile, url);
         let cmmand_array = this.get_full_cmd(dest_path);
         log.info(cmmand_array);
-        this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, null, this.on_exit, this);
+        this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, this.on_stdout, this.on_exit, this);
         log.info("pid : " + this.base.spawn.pid);
     }
 
