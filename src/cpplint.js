@@ -68,13 +68,14 @@ class cpplint {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cpplint');
-        this.quick_fix = this.base.get_cfg(this.settings, "--quick_fix", false, true);
-        this.onsave = this.base.get_cfg(this.settings, "--onsave", false, true);
+        this.quick_fix = this.base.get_cfg_value(this.settings, "--quick_fix", false);
+        this.onsave = this.base.get_cfg_value(this.settings, "--onsave", false);
         this.lintdirparm = this.base.get_cfg(this.settings, "--recursive", true);
         if ("--recursive" != this.lintdirparm) {
             this.lintdirparm = this.base.get_cfg(this.settings, "--lintdir=", false);
         }
         this.cmd_ary = this.get_cfg();
+        log.debug(this);
     }
 
     get_full_cmd(dest_path, isFile) {

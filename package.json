@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.6",
+	"version": "1.4.7",
 	"publisher": "QiuMingGe",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -400,7 +400,7 @@
 				"cpp-check-lint.cpplint.--filter=": {
 					"type": "string",
 					"default": "",
-					"description": "filter=-x,+y,...\r\n  Specify a comma-separated list of category-filters to apply: only\r\n  error messages whose category names pass the filters will be printed.\r\n  (Category names are printed with the message and look like\r\n  \"[whitespace/indent]\".)  Filters are evaluated left to right.\r\n  \"-FOO\" and \"FOO\" means \"do not print categories that start with FOO\".\r\n  \"+FOO\" means \"do print categories that start with FOO\".\r\n\r\n  Examples: --filter=-whitespace,+whitespace/braces\r\n    --filter=whitespace,runtime/printf,+runtime/printf_format\r\n    --filter=-,+build/include_what_you_use\r\n\r\n  To see a list of all the categories used in cpplint, pass no arg:\r\n  --filter="
+					"description": "filter=-x,+y,...\r\n  Specify a comma-separated list of category-filters to apply: only\r\n  error messages whose category names pass the filters will be printed.\r\n  (Category names are printed with the message and look like\r\n  \"[whitespace/indent]\".)  Filters are evaluated left to right.\r\n  \"-FOO\" and \"FOO\" means \"do not print categories that start with FOO\".\r\n  \"+FOO\" means \"do print categories that start with FOO\".\r\n\r\n  Examples: -whitespace,+whitespace/braces\r\n whitespace,runtime/printf,+runtime/printf_format\r\n -,+build/include_what_you_use\r\n\r\n  To see a list of all the categories used in cpplint, pass no arg:\r\n  --filter="
 				},
 				"cpp-check-lint.cpplint.--counting=": {
 					"type": "string",

@@ -78,6 +78,15 @@ class code_base {
     }
 
     /**
+     * @param {vscode.WorkspaceConfiguration} settings
+     * @param {any} key
+     * @param {any} default_value
+     */
+     get_cfg_value(settings, key, default_value = null) {
+        return settings.get(key,default_value);
+    }
+    
+    /**
      * @param {string} root_path
      * @param {string} exe_name_win
      * @param {string} exe_name_linux

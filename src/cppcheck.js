@@ -124,9 +124,10 @@ class cppcheck {
 
     update_setting() {
         this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
-        this.quick_fix = this.base.get_cfg(this.settings, "--quick_fix", false, true);
-        this.onsave = this.base.get_cfg(this.settings, "--onsave", false, true);
+        this.quick_fix = this.base.get_cfg_value(this.settings, "--quick_fix", false);
+        this.onsave = this.base.get_cfg_value(this.settings, "--onsave", false);
         this.cmd_ary = this.get_cfg();
+        log.debug(this);
     }
 
     get_full_cmd(dest_path) {

@@ -87,3 +87,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - update windows cpplint.exe (pyinstaller)
 - The status bar shows the progress for cppcheck
+
+## [v1.4.7] - 2021-10-21
+### Changed
+- bug fixed -onsave isn't working
