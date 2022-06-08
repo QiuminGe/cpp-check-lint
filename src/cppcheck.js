@@ -46,6 +46,15 @@ class cppcheck {
             }
         }
 
+        let include = this.base.get_cfg(this.settings, "-I ", false, []);
+        if (0 != include.length) {
+            for (let value of include) {
+                if (!common.is_empty_str(value)) {
+                    res.push("-I" + this.base.to_full_name(value))
+                }
+            }
+        }
+
         let suppress = this.base.get_cfg(this.settings, "--suppress=", false, []);
         if (0 != suppress.length) {
             for (let value of suppress) {

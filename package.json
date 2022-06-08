@@ -334,6 +334,15 @@
 					"default": [],
 					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: [DEBUG,WIN32]."
 				},
+				"cpp-check-lint.cppcheck.-I ": {
+					"type": "array",
+					"examples": [[
+						"src/lib",
+						"src/utils"
+					]],
+					"default": [],
+					"description": "Give paths to search for include files\r\n auto add base path"
+				},
 				"cpp-check-lint.cppcheck.-U": {
 					"type": "array",
 					"examples": [[
