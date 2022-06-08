@@ -171,7 +171,7 @@
 				"cpp-check-lint.cppcheck.--addon=": {
 					"type": "array",
 					"default": [],
-					"examples": [
+					"examples": [[
 						"cert",
 						{
 							"script": "misra.py",
@@ -181,7 +181,7 @@
 						},
 						"y2038.py",
 						"C:\\UsersAdministrator\\hreadsafety.json"
-					],
+					]],
 					"description": "see ReadMe"
 				},
 				"cpp-check-lint.cppcheck.--customargs=": {
@@ -216,10 +216,10 @@
 				},
 				"cpp-check-lint.cppcheck.-i ": {
 					"type": "array",
-					"examples": [
+					"examples": [[
 						"build",
 						"src/utils"
-					],
+					]],
 					"default": [],
 					"description": "Give a source file or source file directory to exclude\r\nfrom the check. This applies only to source files so\r\nheader files included by source files are not matched.\r\nDirectory name is matched to all parts of the path.\r\n auto add base path"
 				},
@@ -314,10 +314,6 @@
 				},
 				"cpp-check-lint.cppcheck.--suppress=": {
 					"type": "array",
-					"examples": [
-						"unmatchedSuppression",
-						"missingIncludeSystem"
-					],
 					"default": [
 						"unmatchedSuppression",
 						"missingIncludeSystem"
@@ -331,19 +327,19 @@
 				},
 				"cpp-check-lint.cppcheck.-D": {
 					"type": "array",
-					"examples": [
+					"examples": [[
 						"DUBUG",
 						"WIN32"
-					],
+					]],
 					"default": [],
 					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: [DEBUG,WIN32]."
 				},
 				"cpp-check-lint.cppcheck.-U": {
 					"type": "array",
-					"examples": [
+					"examples": [[
 						"DUBUG",
 						"WIN32"
-					],
+					]],
 					"default": [],
 					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: '[DEBUG,WIN32]'"
 				},
@@ -443,10 +439,10 @@
 				},
 				"cpp-check-lint.cpplint.--exclude=": {
 					"type": "array",
-					"examples": [
+					"examples": [[
 						"build",
 						"src/utils"
-					],
+					]],
 					"default": [],
 					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:'[\"one.cc\",\"build\",\"test/*.cc\"]'"
 				},
