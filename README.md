@@ -1,10 +1,12 @@
-# cpp-check-lint
+# cpp-checker
 
-[![GitHub release](https://img.shields.io/github/release/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/releases)
-[![GitHub license](https://img.shields.io/github/license/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/QiuminGe/cpp-check-lint?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/stargazers)
-[![GitHub fork](https://img.shields.io/github/forks/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/issues)
+[![GitHub release](https://img.shields.io/github/release/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/releases)
+[![GitHub license](https://img.shields.io/github/license/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/eBikeLabs/cpp-checker?style=plastic)](https://github.com/eBikeLabs/cpp-checker/stargazers)
+[![GitHub fork](https://img.shields.io/github/forks/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/issues)
+
+A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lint)
 
 ## Features
 
@@ -160,7 +162,7 @@
 
 ## Known Issues
 
-* cpp-check-lint https://github.com/QiuminGe/cpp-check-lint/issues
+* cpp-checker https://github.com/eBikeLabs/cpp-checker/issues
 
 * cpplint : https://github.com/cpplint/cpplint/issues
 
@@ -168,9 +170,9 @@
 
 ## Source code 
 
-* https://github.com/QiuminGe/cpp-check-lint
+* https://github.com/eBikeLabs/cpp-checker
 
-##  [Release Notes](https://github.com/QiuminGe/cpp-check-lint/blob/main/CHANGELOG.md)
+##  [Release Notes](https://github.com/eBikeLabs/cpp-checker/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------
 

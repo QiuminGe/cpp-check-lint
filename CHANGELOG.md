@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "cpp-check-lint" extension will be documented in this file.
+All notable changes to the "cpp-checker" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
@@ -91,3 +91,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.4.7] - 2021-10-21
 ### Changed
 - bug fixed -onsave isn't working
+
+## [v1.4.8] - 2022-06-08
+### Added
+- option cppcheck.-I

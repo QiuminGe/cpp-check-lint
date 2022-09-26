@@ -46,6 +46,15 @@ class cppcheck {
             }
         }
 
+        let include = this.base.get_cfg(this.settings, "-I ", false, []);
+        if (0 != include.length) {
+            for (let value of include) {
+                if (!common.is_empty_str(value)) {
+                    res.push("-I" + this.base.to_full_name(value))
+                }
+            }
+        }
+
         let suppress = this.base.get_cfg(this.settings, "--suppress=", false, []);
         if (0 != suppress.length) {
             for (let value of suppress) {
@@ -123,7 +132,7 @@ class cppcheck {
     }
 
     update_setting() {
-        this.settings = vscode.workspace.getConfiguration('cpp-check-lint.cppcheck');
+        this.settings = vscode.workspace.getConfiguration('cpp-checker.cppcheck');
         this.quick_fix = this.base.get_cfg_value(this.settings, "--quick_fix", false);
         this.onsave = this.base.get_cfg_value(this.settings, "--onsave", false);
         this.cmd_ary = this.get_cfg();
