@@ -24,36 +24,44 @@
 ## Requirements
 
 ### cppcheck
-* Install from source
-    ```
-    http://cppcheck.net/
-    yum install -y gcc gcc-c++ cmake
-    sudo tar -zxvf cppcheck-x.y.tar.gz
-    cd cppcheck-x.y/
-    mkdir build && cd build
-    cmake ..
-    make -j 4
-    ```
-* Install for yum/apt_get/brew :
-    ```
-    sudo apt-get install cppcheck
-    sudo yum install cppcheck
-    brew install cppcheck
-    ```
 
-* help    
-   http://cppcheck.sourceforge.net/manual.html
+* Install from source
+
+``` shell
+# http://cppcheck.net/
+yum install -y gcc gcc-c++ cmake
+sudo tar -zxvf cppcheck-x.y.tar.gz
+cd cppcheck-x.y/
+mkdir build && cd build
+cmake ..
+make -j 4
+```
+
+* Install for yum/apt_get/brew :
+
+``` shell
+sudo apt-get install cppcheck
+sudo yum install cppcheck
+brew install cppcheck
+```
+
+* help
+
+http://cppcheck.sourceforge.net/manual.html
 
 ### cpplint
 
 * Install from source
-    ```
-    https://github.com/cpplint/cpplint
-    ```
+
+```
+https://github.com/cpplint/cpplint
+```
+
 * Install from pip
-    ```
-    pip install cpplint
-    ```
+
+```
+pip install cpplint
+```
 
 ### builtin binaries
 
@@ -61,7 +69,7 @@
 * cpplint 1.6.1
 
     > support  (**linux cpplint need python**)
-    >> | Os | Bit | Version | 
+    >> | Os | Bit | Version |
     >> |:--:|:---:|:--------|
     >> |Ubuntu|64|16.04+|
     >> |Debian|64|9+|
@@ -71,78 +79,88 @@
 
 ## Extension Settings
 
- * Cppcheck:--executable   
-    ``` 
-    if (cppcheck configure is null) {
-        use builtin binaries
+* Cppcheck:--executable
+
+``` c
+if (cppcheck configure is null) {
+    use builtin binaries
+} else {
+    if( ("path to executable" --version).trim().toLowerCase().startsWith("cppcheck") ){
+        use "path to executable"
     } else {
-        if( ("path to executable" --version).trim().toLowerCase().startsWith("cppcheck") ){
-            use "path to executable"
-        } else {
-        use builtin binaries 
-        }
+    use builtin binaries 
     }
-    ```
- * Cppcheck:--addon= 
+}
+```
 
-    ```json
-    [
-        "cert", 
-        {
-            "script": "misra.py", 
-            "args": [
-                "--rule-texts=/home/user/misra.txt"
-            ]
-        }, 
-        "y2038.py", 
-        "C:\\UsersAdministrator\\hreadsafety.json"
-    ]
-    ```
-    "addon" and "addon.py" will use addons folder under the same level folder as cppcheck . 
+* Cppcheck:--addon=
 
-    ```
-    [rorot@cpppcheck]$ tree | grep -E " cppcheck.exe| addons| misra.py| y2038.py| cert.py| threadsafety.py"
-    ├── addons
-    │   ├── cert.py
-    │   ├── misra.py
-    │   ├── threadsafety.py
-    │   └── y2038.py
-    ├── cppcheck.exe
-    ```
-     Some addons need extra arguments. You can configure json or json file.
-    ```
+```json
+[
+    "cert", 
     {
-        "script": "misra.py",
+        "script": "misra.py", 
         "args": [
             "--rule-texts=/home/user/misra.txt"
         ]
-    }
-    "--rule-texts=/home/user/misra.txt" (need absolute path, and use "/" or "\\" to split paths)
-    If ${workspace folder} is included, it will be replaced.
-    "args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"] -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
-    ```
-*  Cpplint:--executable
-    ```
-    if (cpplint configure is null) {
-        use builtin binaries
+    }, 
+    "y2038.py", 
+    "C:\\UsersAdministrator\\hreadsafety.json"
+]
+```
+
+"addon" and "addon.py" will use addons folder under the same level folder as cppcheck . 
+
+```
+[rorot@cpppcheck]$ tree | grep -E " cppcheck.exe| addons| misra.py| y2038.py| cert.py| threadsafety.py"
+├── addons
+│   ├── cert.py
+│   ├── misra.py
+│   ├── threadsafety.py
+│   └── y2038.py
+├── cppcheck.exe
+```
+
+Some addons need extra arguments. You can configure json or json file.
+
+``` json
+{
+    "script": "misra.py",
+    "args": [
+        "--rule-texts=/home/user/misra.txt"
+    ]
+}
+"--rule-texts=/home/user/misra.txt" (need absolute path, and use "/" or "\\" to split paths)
+If ${workspace folder} is included, it will be replaced.
+"args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"] -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
+```
+
+* Cpplint:--executable
+
+``` c
+if (cpplint configure is null) {
+    use builtin binaries
+} else {
+    if("path to executable"){
+        use "path to executable"
     } else {
-        if("path to executable"){
-            use "path to executable"
-        } else {
-            use builtin binaries 
-        }
-    } 
-    ```
-* Cpplint:--recursive
-* Cpplint:--lintdir
-    ``` 
-    if ( cpplint version support "--recursive") {
-            set --recursive true
-        } else {
-            set "--recursive" false
-            set "--lintdir"
+        use builtin binaries 
     }
-    ``` 
+} 
+```
+
+* Cpplint:--recursive
+
+* Cpplint:--lintdir
+
+``` c
+if ( cpplint version support "--recursive") {
+        set --recursive true
+    } else {
+        set "--recursive" false
+        set "--lintdir"
+}
+```
 
 * customargs
 
@@ -173,11 +191,10 @@
 
 * cppcheck : https://sourceforge.net/p/cppcheck/wiki/Home/
 
-## Source code 
+## Source code
 
 * https://github.com/QiuminGe/cpp-checker
 
-##  [Release Notes](https://github.com/QiuminGe/cpp-checker/blob/main/CHANGELOG.md)
+## [Release Notes](https://github.com/QiuminGe/cpp-checker/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------
-

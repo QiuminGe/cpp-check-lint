@@ -472,6 +472,7 @@
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js",
+		"vsce":"npm i vsce -g",
 		"publish": "vsce publish",
 		"package": "vsce package"
 	},
