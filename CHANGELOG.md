@@ -96,7 +96,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - option cppcheck.-I
 
-## [v1.5.0] - 2023.11.20
+## [v1.5.1] - 2023.11.20
 ### Changed
 - bug fixed --std_c miss c99 
 - cpplint update to v2.12.0
