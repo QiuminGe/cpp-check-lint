@@ -8,18 +8,18 @@
 
 ## Features
 
- * cppcheck/cpplint:
-    * editor/context      
-        * check current file    
-        * check the directory of the current file    
-        * cmd :    
-            * clear all    
-            * clear current file    
-            * stop check    
-    * explorer/context
-        * check directory || check current file
-        * cmd  
-    * OnSave/QuickFix
+* cppcheck/cpplint:
+* editor/context
+    * check current file
+    * check the directory of the current file
+    * cmd :
+        * clear all
+        * clear current file
+        * stop check
+* explorer/context
+    * check directory || check current file
+    * cmd  
+* OnSave/QuickFix
 
 ## Requirements
 
@@ -27,7 +27,7 @@
 
 * Install from source
 
-``` shell
+```
 # http://cppcheck.net/
 yum install -y gcc gcc-c++ cmake
 sudo tar -zxvf cppcheck-x.y.tar.gz
@@ -39,7 +39,7 @@ make -j 4
 
 * Install for yum/apt_get/brew :
 
-``` shell
+```
 sudo apt-get install cppcheck
 sudo yum install cppcheck
 brew install cppcheck
@@ -81,7 +81,7 @@ pip install cpplint
 
 * Cppcheck:--executable
 
-``` c
+```
 if (cppcheck configure is null) {
     use builtin binaries
 } else {
@@ -95,7 +95,7 @@ if (cppcheck configure is null) {
 
 * Cppcheck:--addon=
 
-```json
+```
 [
     "cert", 
     {
@@ -123,7 +123,7 @@ if (cppcheck configure is null) {
 
 Some addons need extra arguments. You can configure json or json file.
 
-``` json
+```
 {
     "script": "misra.py",
     "args": [
@@ -137,7 +137,7 @@ If ${workspace folder} is included, it will be replaced.
 
 * Cpplint:--executable
 
-``` c
+```
 if (cpplint configure is null) {
     use builtin binaries
 } else {
@@ -153,7 +153,7 @@ if (cpplint configure is null) {
 
 * Cpplint:--lintdir
 
-``` c
+```
 if ( cpplint version support "--recursive") {
         set --recursive true
     } else {
