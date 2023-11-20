@@ -6,7 +6,7 @@
 		"cppcheck",
 		"cpplint"
 	],
-	"version": "1.4.8",
+	"version": "1.4.9",
 	"publisher": "eBikeLabs",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -53,94 +53,94 @@
 				"title": "cpplint-cmd"
 			}
 		],
-		"keybindings": [
-			{
-				"command": "cpp-checker.cppcheck",
-				"key": "ctrl+q",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "cpp-checker.cppcheckdir",
-				"key": "ctrl+shift+q",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "cpp-checker.cpplint",
-				"key": "ctrl+w",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "cpp-checker.cpplintdir",
-				"key": "ctrl+shift+w",
-				"when": "editorTextFocus"
-			}
-		],
 		"menus": {
 			"editor/context": [
 				{
+					"submenu": "cpp-check-lint.editor.context",
+					"group": "cpp-check-lint"
+				}
+			],
+			"cpp-check-lint.editor.context": [
+				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cppcheck",
-					"group": "2_ccl@1"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cppcheckdir",
-					"group": "2_ccl@2"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cppcheckcmd",
-					"group": "2_ccl@3"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cpplint",
-					"group": "2_ccl@4"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cpplintdir",
-					"group": "2_ccl@5"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cpplintcmd",
-					"group": "2_ccl@6"
+					"group": "cpp-check-lint"
 				}
 			],
 			"explorer/context": [
 				{
+					"submenu": "cpp-check-lint.explorer.context",
+					"group": "cpp-check-lint"
+				}
+			],
+			"cpp-check-lint.explorer.context": [
+				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cppcheck",
-					"group": "2_iep@1"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "cpp-checker.cppcheckdir",
-					"group": "2_iep@1"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
 					"command": "cpp-checker.cppcheckcmd",
-					"group": "2_iep@2"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
 					"command": "cpp-checker.cpplint",
-					"group": "2_iep@3"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "cpp-checker.cpplintdir",
-					"group": "2_iep@3"
+					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
 					"command": "cpp-checker.cpplintcmd",
-					"group": "2_iep@4"
+					"group": "cpp-check-lint"
 				}
 			]
 		},
+		"submenus": [
+			{
+				"id": "cpp-check-lint.editor.context",
+				"label": "cpp-check-lint"
+			},
+			{
+				"id": "cpp-check-lint.explorer.context",
+				"label": "cpp-check-lint"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "cpp-checker",
@@ -471,7 +471,9 @@
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
-		"test": "node ./test/runTest.js"
+		"test": "node ./test/runTest.js",
+		"publish": "vsce publish",
+		"package": "vsce package"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.52.0",
