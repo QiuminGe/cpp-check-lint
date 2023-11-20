@@ -1,10 +1,10 @@
-# cpp-checker
+# cpp-check-lint
 
-[![GitHub release](https://img.shields.io/github/release/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/releases)
-[![GitHub license](https://img.shields.io/github/license/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/QiuminGe/cpp-checker?style=plastic)](https://github.com/QiuminGe/cpp-checker/stargazers)
-[![GitHub fork](https://img.shields.io/github/forks/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/issues)
+[![GitHub release](https://img.shields.io/github/release/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/releases)
+[![GitHub license](https://img.shields.io/github/license/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/QiuminGe/cpp-check-lint?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/stargazers)
+[![GitHub fork](https://img.shields.io/github/forks/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/QiuminGe/cpp-check-lint.svg?style=plastic)](https://github.com/QiuminGe/cpp-check-lint/issues)
 
 ## Features
 
@@ -185,7 +185,7 @@ if ( cpplint version support "--recursive") {
 
 ## Known Issues
 
-* cpp-checker https://github.com/QiuminGe/cpp-checker/issues
+* cpp-check-lint https://github.com/QiuminGe/cpp-check-lint/issues
 
 * cpplint : https://github.com/cpplint/cpplint/issues
 
@@ -193,8 +193,8 @@ if ( cpplint version support "--recursive") {
 
 ## Source code
 
-* https://github.com/QiuminGe/cpp-checker
+* https://github.com/QiuminGe/cpp-check-lint
 
-## [Release Notes](https://github.com/QiuminGe/cpp-checker/blob/main/CHANGELOG.md)
+## [Release Notes](https://github.com/QiuminGe/cpp-check-lint/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------

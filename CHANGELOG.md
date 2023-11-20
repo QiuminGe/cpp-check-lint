@@ -98,7 +98,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [v1.5.0] - 2023.11.20
 ### Changed
-- bug fixed --std_c miss c99 [lubomilko]
-- rename cpp-check-lint to cpp-checker [eBikeLabs]
+- bug fixed --std_c miss c99 
 - cpplint update to v2.12.0
 - cppcheck update to v1.5.5

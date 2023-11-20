@@ -1,6 +1,6 @@
 {
-	"name": "cpp-checker",
-	"displayName": "cpp-checker",
+	"name": "cpp-check-lint",
+	"displayName": "cpp-check-lint",
 	"description": "cppcheck cpplint",
 	"keywords": [
 		"cppcheck",
@@ -18,38 +18,38 @@
 	"activationEvents": [
 		"onLanguage:cpp",
 		"onLanguage:c",
-		"onCommand:cpp-checker.cppcheck",
-		"onCommand:cpp-checker.cppcheckdir",
-		"onCommand:cpp-checker.cppcheckcmd",
-		"onCommand:cpp-checker.cpplint",
-		"onCommand:cpp-checker.cpplintdir",
-		"onCommand:cpp-checker.cpplintcmd"
+		"onCommand:cpp-check-lint.cppcheck",
+		"onCommand:cpp-check-lint.cppcheckdir",
+		"onCommand:cpp-check-lint.cppcheckcmd",
+		"onCommand:cpp-check-lint.cpplint",
+		"onCommand:cpp-check-lint.cpplintdir",
+		"onCommand:cpp-check-lint.cpplintcmd"
 	],
 	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "cpp-checker.cppcheck",
+				"command": "cpp-check-lint.cppcheck",
 				"title": "cppcheck-file"
 			},
 			{
-				"command": "cpp-checker.cppcheckdir",
+				"command": "cpp-check-lint.cppcheckdir",
 				"title": "cppcheck-dir"
 			},
 			{
-				"command": "cpp-checker.cppcheckcmd",
+				"command": "cpp-check-lint.cppcheckcmd",
 				"title": "cppcheck-cmd"
 			},
 			{
-				"command": "cpp-checker.cpplint",
+				"command": "cpp-check-lint.cpplint",
 				"title": "cpplint-file"
 			},
 			{
-				"command": "cpp-checker.cpplintdir",
+				"command": "cpp-check-lint.cpplintdir",
 				"title": "cpplint-dir"
 			},
 			{
-				"command": "cpp-checker.cpplintcmd",
+				"command": "cpp-check-lint.cpplintcmd",
 				"title": "cpplint-cmd"
 			}
 		],
@@ -63,32 +63,32 @@
 			"cpp-check-lint.editor.context": [
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cppcheck",
+					"command": "cpp-check-lint.cppcheck",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cppcheckdir",
+					"command": "cpp-check-lint.cppcheckdir",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cppcheckcmd",
+					"command": "cpp-check-lint.cppcheckcmd",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cpplint",
+					"command": "cpp-check-lint.cpplint",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cpplintdir",
+					"command": "cpp-check-lint.cpplintdir",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cpplintcmd",
+					"command": "cpp-check-lint.cpplintcmd",
 					"group": "cpp-check-lint"
 				}
 			],
@@ -101,32 +101,32 @@
 			"cpp-check-lint.explorer.context": [
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cppcheck",
+					"command": "cpp-check-lint.cppcheck",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "explorerResourceIsFolder",
-					"command": "cpp-checker.cppcheckdir",
+					"command": "cpp-check-lint.cppcheckdir",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
-					"command": "cpp-checker.cppcheckcmd",
+					"command": "cpp-check-lint.cppcheckcmd",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp",
-					"command": "cpp-checker.cpplint",
+					"command": "cpp-check-lint.cpplint",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "explorerResourceIsFolder",
-					"command": "cpp-checker.cpplintdir",
+					"command": "cpp-check-lint.cpplintdir",
 					"group": "cpp-check-lint"
 				},
 				{
 					"when": "resourceLangId == c || resourceLangId == cpp || resourceLangId == h || resourceLangId == hpp || explorerResourceIsFolder",
-					"command": "cpp-checker.cpplintcmd",
+					"command": "cpp-check-lint.cpplintcmd",
 					"group": "cpp-check-lint"
 				}
 			]
@@ -143,14 +143,14 @@
 		],
 		"configuration": {
 			"type": "object",
-			"title": "cpp-checker",
+			"title": "cpp-check-lint",
 			"properties": {
-				"cpp-checker.--enable": {
+				"cpp-check-lint.--enable": {
 					"type": "boolean",
 					"default": true,
-					"description": "Enable or disable the cpp-checker"
+					"description": "Enable or disable the cpp-check-lint"
 				},
-				"cpp-checker.--log": {
+				"cpp-check-lint.--log": {
 					"type": "number",
 					"default": 0,
 					"enum": [
@@ -168,7 +168,7 @@
 						"Debug"
 					]
 				},
-				"cpp-checker.cppcheck.--addon=": {
+				"cpp-check-lint.cppcheck.--addon=": {
 					"type": "array",
 					"default": [],
 					"examples": [[
@@ -184,37 +184,37 @@
 					]],
 					"description": "see ReadMe"
 				},
-				"cpp-checker.cppcheck.--customargs=": {
+				"cpp-check-lint.cppcheck.--customargs=": {
 					"type": "string",
 					"default": "",
 					"description": "customargs"
 				},
-				"cpp-checker.cppcheck.--enable": {
+				"cpp-check-lint.cppcheck.--enable": {
 					"type": "boolean",
 					"default": true,
 					"description": "Enable or disable the cppcheck"
 				},
-				"cpp-checker.cppcheck.--quick_fix": {
+				"cpp-check-lint.cppcheck.--quick_fix": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether to enable experimental \"Quick Fix\" feature."
 				},
-				"cpp-checker.cppcheck.--onsave": {
+				"cpp-check-lint.cppcheck.--onsave": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether cppcheck is run on save"
 				},
-				"cpp-checker.cppcheck.--executable": {
+				"cpp-check-lint.cppcheck.--executable": {
 					"type": "string",
 					"default": "cppcheck",
 					"description": "The path to the cppcheck executable(builtin binaries will be used if empty or run error)."
 				},
-				"cpp-checker.cppcheck.--enable=": {
+				"cpp-check-lint.cppcheck.--enable=": {
 					"type": "string",
 					"default": "warning",
 					"description": "Enable additional checks. The available ids are: all, warning, style, performance, portability, information, unusedFunction, missingInclide"
 				},
-				"cpp-checker.cppcheck.-i ": {
+				"cpp-check-lint.cppcheck.-i ": {
 					"type": "array",
 					"examples": [[
 						"build",
@@ -223,17 +223,17 @@
 					"default": [],
 					"description": "Give a source file or source file directory to exclude\r\nfrom the check. This applies only to source files so\r\nheader files included by source files are not matched.\r\nDirectory name is matched to all parts of the path.\r\n auto add base path"
 				},
-				"cpp-checker.cppcheck.--inconclusive": {
+				"cpp-check-lint.cppcheck.--inconclusive": {
 					"type": "boolean",
 					"default": false,
 					"description": "Allow that Cppcheck reports even though the analysis is\r\ninconclusive.\r\nThere are false positives with this option. Each result\r\nmust be carefully investigated before you know if it is\r\ngood or bad."
 				},
-				"cpp-checker.cppcheck.--inline-suppr": {
+				"cpp-check-lint.cppcheck.--inline-suppr": {
 					"type": "boolean",
 					"default": true,
 					"description": "Enable inline suppressions. Use them by placing one or\r\nmore comments, like: '// cppcheck-suppress warningId'\r\non the lines before the warning to suppress."
 				},
-				"cpp-checker.cppcheck.-j": {
+				"cpp-check-lint.cppcheck.-j": {
 					"type": [
 						"number",
 						"null"
@@ -241,7 +241,7 @@
 					"default": 4,
 					"description": "Start <jobs> threads to do the checking simultaneously."
 				},
-				"cpp-checker.cppcheck.--language=": {
+				"cpp-check-lint.cppcheck.--language=": {
 					"type": "string",
 					"default": "c++",
 					"enum": [
@@ -250,7 +250,7 @@
 					],
 					"description": "Forces cppcheck to check all files as the given language. Valid values are: c, c++"
 				},
-				"cpp-checker.cppcheck.--platform=": {
+				"cpp-check-lint.cppcheck.--platform=": {
 					"type": "string",
 					"default": "native",
 					"enum": [
@@ -270,14 +270,14 @@
 					],
 					"description": " Specifies platform specific types and sizes."
 				},
-				"cpp-checker.cppcheck.--report-progress": {
+				"cpp-check-lint.cppcheck.--report-progress": {
 					"type": "boolean",
 					"default": true,
 					"enum": [
 						true
 					]
 				},
-				"cpp-checker.cppcheck.--std_c=": {
+				"cpp-check-lint.cppcheck.--std_c=": {
 					"type": "string",
 					"default": "c89",
 					"enum": [
@@ -286,7 +286,7 @@
 						"c11"
 					]
 				},
-				"cpp-checker.cppcheck.--std_c++=": {
+				"cpp-check-lint.cppcheck.--std_c++=": {
 					"type": "string",
 					"default": "c++03",
 					"enum": [
@@ -297,14 +297,14 @@
 						"c++20"
 					]
 				},
-				"cpp-checker.cppcheck.--template=": {
+				"cpp-check-lint.cppcheck.--template=": {
 					"type": "string",
 					"default": "{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]",
 					"enum": [
 						"{file}:{line}:{column}: {severity}: CWE-{cwe} {message}:[{id}]"
 					]
 				},
-				"cpp-checker.cppcheck.--max-ctu-depth=": {
+				"cpp-check-lint.cppcheck.--max-ctu-depth=": {
 					"type": [
 						"number",
 						"null"
@@ -312,7 +312,7 @@
 					"default": 2,
 					"description": "Max depth in whole program analysis. The default value\r\nis 2. A larger value will mean more errors can be found\r\nbut also means the analysis will be slower."
 				},
-				"cpp-checker.cppcheck.--suppress=": {
+				"cpp-check-lint.cppcheck.--suppress=": {
 					"type": "array",
 					"default": [
 						"unmatchedSuppression",
@@ -320,12 +320,12 @@
 					],
 					"description": "--suppress=<spec>    Suppress warnings that match <spec>. The format of\r\n                     <spec> is:\r\n                     [error id]:[filename]:[line]\r\n                     The [filename] and [line] are optional. If [error id]\r\n                     is a wildcard '*', all error ids match."
 				},
-				"cpp-checker.cppcheck.--suppressions-list=": {
+				"cpp-check-lint.cppcheck.--suppressions-list=": {
 					"type": "string",
 					"default": "",
 					"description": "--suppressions-list=<file>\r\n                     Suppress warnings listed in the file. Each suppression\r\n                     is in the same format as <spec> above."
 				},
-				"cpp-checker.cppcheck.-D": {
+				"cpp-check-lint.cppcheck.-D": {
 					"type": "array",
 					"examples": [[
 						"DUBUG",
@@ -334,7 +334,7 @@
 					"default": [],
 					"description": "Define preprocessor symbol. Unless --max-configs or\r\n--force is used, Cppcheck will only check the given\r\nconfiguration when -D is used.\r\nExample: [DEBUG,WIN32]."
 				},
-				"cpp-checker.cppcheck.-I ": {
+				"cpp-check-lint.cppcheck.-I ": {
 					"type": "array",
 					"examples": [[
 						"src/lib",
@@ -343,7 +343,7 @@
 					"default": [],
 					"description": "Give paths to search for include files\r\n auto add base path"
 				},
-				"cpp-checker.cppcheck.-U": {
+				"cpp-check-lint.cppcheck.-U": {
 					"type": "array",
 					"examples": [[
 						"DUBUG",
@@ -352,37 +352,37 @@
 					"default": [],
 					"description": "   Undefine preprocessor symbol. Use -U to explicitly\r\nhide certain #ifdef <ID> code paths from checking.\t\nExample: '[DEBUG,WIN32]'"
 				},
-				"cpp-checker.cpplint.--enable": {
+				"cpp-check-lint.cpplint.--enable": {
 					"type": "boolean",
 					"default": true,
 					"description": "Enable or disable the cpplint"
 				},
-				"cpp-checker.cpplint.--customargs=": {
+				"cpp-check-lint.cpplint.--customargs=": {
 					"type": "string",
 					"default": "",
 					"description": "customargs"
 				},
-				"cpp-checker.cpplint.--executable": {
+				"cpp-check-lint.cpplint.--executable": {
 					"type": "string",
 					"default": "cpplint",
 					"description": "The path to the cpplint executable(builtin binaries will be used if empty or run error)."
 				},
-				"cpp-checker.cpplint.--lintdir=": {
+				"cpp-check-lint.cpplint.--lintdir=": {
 					"type": "string",
 					"default": "",
 					"description": "The param for lint dir."
 				},
-				"cpp-checker.cpplint.--quick_fix": {
+				"cpp-check-lint.cpplint.--quick_fix": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether to enable experimental \"Quick Fix\" feature."
 				},
-				"cpp-checker.cpplint.--onsave": {
+				"cpp-check-lint.cpplint.--onsave": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether cpplint is run on save"
 				},
-				"cpp-checker.cpplint.--verbose=": {
+				"cpp-check-lint.cpplint.--verbose=": {
 					"type": "number",
 					"default": 1,
 					"enum": [
@@ -395,19 +395,19 @@
 					],
 					"description": "verbose=#\r\n  Specify a number 0-5 to restrict errors to certain verbosity levels.\r\n  Errors with lower verbosity levels have lower confidence and are more\r\n  likely to be false positives."
 				},
-				"cpp-checker.cpplint.--output=": {
+				"cpp-check-lint.cpplint.--output=": {
 					"type": "string",
 					"default": "eclipse",
 					"enum": [
 						"eclipse"
 					]
 				},
-				"cpp-checker.cpplint.--filter=": {
+				"cpp-check-lint.cpplint.--filter=": {
 					"type": "string",
 					"default": "",
 					"description": "filter=-x,+y,...\r\n  Specify a comma-separated list of category-filters to apply: only\r\n  error messages whose category names pass the filters will be printed.\r\n  (Category names are printed with the message and look like\r\n  \"[whitespace/indent]\".)  Filters are evaluated left to right.\r\n  \"-FOO\" and \"FOO\" means \"do not print categories that start with FOO\".\r\n  \"+FOO\" means \"do print categories that start with FOO\".\r\n\r\n  Examples: -whitespace,+whitespace/braces\r\n whitespace,runtime/printf,+runtime/printf_format\r\n -,+build/include_what_you_use\r\n\r\n  To see a list of all the categories used in cpplint, pass no arg:\r\n  --filter="
 				},
-				"cpp-checker.cpplint.--counting=": {
+				"cpp-check-lint.cpplint.--counting=": {
 					"type": "string",
 					"default": "detailed",
 					"enum": [
@@ -418,17 +418,17 @@
 					],
 					"description": "counting=total|toplevel|detailed\r\n  The total number of errors found is always printed. If\r\n  'toplevel' is provided, then the count of errors in each of\r\n  the top-level categories like 'build' and 'whitespace' will\r\n  also be printed. If 'detailed' is provided, then a count\r\n  is provided for each category like 'build/class'."
 				},
-				"cpp-checker.cpplint.--root=": {
+				"cpp-check-lint.cpplint.--root=": {
 					"type": "string",
 					"default": "",
 					"description": "root=subdir\r\n  The root directory used for deriving header guard CPP variable.\r\n  This directory is relative to the top level directory of the repository\r\n  which by default is determined by searching for a directory that contains\r\n  .git, .hg, or .svn but can also be controlled with the --repository flag.\r\n  If the specified directory does not exist, this flag is ignored.\r\n\r\n  Examples:\r\n    Assuming that src is the top level directory of the repository (and\r\n    cwd=top/src), the header guard CPP variables for\r\n    src/chrome/browser/ui/browser.h are:\r\n\r\n    No flag => CHROME_BROWSER_UI_BROWSER_H_\r\n    --root=chrome => BROWSER_UI_BROWSER_H_\r\n    --root=chrome/browser => UI_BROWSER_H_\r\n    --root=.. => SRC_CHROME_BROWSER_UI_BROWSER_H_"
 				},
-				"cpp-checker.cpplint.--repository=": {
+				"cpp-check-lint.cpplint.--repository=": {
 					"type": "string",
 					"default": "",
 					"description": "repository=path\r\n  The top level directory of the repository, used to derive the header\r\n  guard CPP variable. By default, this is determined by searching for a\r\n  path that contains .git, .hg, or .svn. When this flag is specified, the\r\n  given path is used instead. This option allows the header guard CPP\r\n  variable to remain consistent even if members of a team have different\r\n  repository root directories (such as when checking out a subdirectory\r\n  with SVN). In addition, users of non-mainstream version control systems\r\n  can use this flag to ensure readable header guard CPP variables.\r\n\r\n  Examples:\r\n    Assuming that Alice checks out ProjectName and Bob checks out\r\n    ProjectName/trunk and trunk contains src/chrome/ui/browser.h, then\r\n    with no --repository flag, the header guard CPP variable will be:\r\n\r\n    Alice => TRUNK_SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n    Bob   => SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n\r\n    If Alice uses the --repository=trunk flag and Bob omits the flag or\r\n    uses --repository=. then the header guard CPP variable will be:\r\n\r\n    Alice => SRC_CHROME_BROWSER_UI_BROWSER_H_\r\n    Bob   => SRC_CHROME_BROWSER_UI_BROWSER_H_"
 				},
-				"cpp-checker.cpplint.--linelength=": {
+				"cpp-check-lint.cpplint.--linelength=": {
 					"type": [
 						"number",
 						"null"
@@ -436,17 +436,17 @@
 					"default": 120,
 					"description": "linelength=digits\r\n  This is the allowed line length for the project. The default value is\r\n  80 characters.\r\n\r\n  Examples:\r\n    --linelength=120"
 				},
-				"cpp-checker.cpplint.--headers=": {
+				"cpp-check-lint.cpplint.--headers=": {
 					"type": "string",
 					"default": "hxx,h++,hh,h,cuh,hpp",
 					"description": "headers=x,y,...\r\n  The header extensions that cpplint will treat as .h in checks. Values are\r\n  automatically added to --extensions list.\r\n (by default, only files with extensions {'hxx', 'h++', 'hh', 'h', 'cuh', 'hpp'} will be assumed to be hea\r\n\r\n  Examples:\r\n    --headers=hxx,h++,hh,h,cuh,hpp\r\n    --headers=hpp,hxx\r\n    --headers=hpp"
 				},
-				"cpp-checker.cpplint.--recursive": {
+				"cpp-check-lint.cpplint.--recursive": {
 					"type": "boolean",
 					"default": true,
 					"description": "Search for files to lint recursively. Each directory given in the list\r\nof files to be linted is replaced by all files that descend from that\r\ndirectory. Files with extensions not in the valid extensions list are\r\nexcluded."
 				},
-				"cpp-checker.cpplint.--exclude=": {
+				"cpp-check-lint.cpplint.--exclude=": {
 					"type": "array",
 					"examples": [[
 						"build",
@@ -455,12 +455,12 @@
 					"default": [],
 					"description": "exclude=path\r\n  Exclude the given path from the list of files to be linted. Relative\r\n  paths are evaluated relative to the current directory and shell globbing\r\n  is performed. This flag can be provided multiple times to exclude\r\n  multiple files.\r\n\r\n  Examples:'[\"one.cc\",\"build\",\"test/*.cc\"]'"
 				},
-				"cpp-checker.cpplint.--extensions=": {
+				"cpp-check-lint.cpplint.--extensions=": {
 					"type": "string",
 					"default": "hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu",
 					"description": "extensions=extension,extension,...\r\n  The allowed file extensions that cpplint will check\r\n\r\nExamples:\r\n  --extensions=hxx,h++,cxx,cc,hh,h,cpp,cuh,c,hpp,c++,cu"
 				},
-				"cpp-checker.cpplint.--includeorder=": {
+				"cpp-check-lint.cpplint.--includeorder=": {
 					"type": "string",
 					"default": "",
 					"description": "includeorder=default|standardcfirst\r\n  For the build/include_order rule, the default is to blindly assume angle\r\n  bracket includes with file extension are c-system-headers (default),\r\n  even knowing this will have false classifications.\r\n  The default is established at google.\r\n  standardcfirst means to instead use an allow-list of known c headers and\r\n  treat all others as separate group of \"other system headers\". The C headers\r\n  included are those of the C-standard lib and closely related ones."
@@ -489,10 +489,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/QiumingGe/cpp-checker"
+		"url": "https://github.com/QiumingGe/cpp-check-lint"
 	},
 	"bugs": {
-		"url": "https://github.com/QiumingGe/cpp-checker/issues"
+		"url": "https://github.com/QiumingGe/cpp-check-lint/issues"
 	},
 	"license": "MIT"
 }
