@@ -1,12 +1,10 @@
 # cpp-checker
 
-[![GitHub release](https://img.shields.io/github/release/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/releases)
-[![GitHub license](https://img.shields.io/github/license/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/eBikeLabs/cpp-checker?style=plastic)](https://github.com/eBikeLabs/cpp-checker/stargazers)
-[![GitHub fork](https://img.shields.io/github/forks/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/issues)
-
-A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lint)
+[![GitHub release](https://img.shields.io/github/release/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/releases)
+[![GitHub license](https://img.shields.io/github/license/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/QiuminGe/cpp-checker?style=plastic)](https://github.com/QiuminGe/cpp-checker/stargazers)
+[![GitHub fork](https://img.shields.io/github/forks/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/QiuminGe/cpp-checker.svg?style=plastic)](https://github.com/QiuminGe/cpp-checker/issues)
 
 ## Features
 
@@ -29,13 +27,20 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 * Install from source
     ```
     http://cppcheck.net/
+    yum install -y gcc gcc-c++ cmake
+    sudo tar -zxvf cppcheck-x.y.tar.gz
+    cd cppcheck-x.y/
+    mkdir build && cd build
+    cmake ..
+    make -j 4
     ```
-* Install for yum/apt_get/brew : 
+* Install for yum/apt_get/brew :
     ```
     sudo apt-get install cppcheck
     sudo yum install cppcheck
     brew install cppcheck
     ```
+
 * help    
    http://cppcheck.sourceforge.net/manual.html
 
@@ -52,8 +57,8 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 ### builtin binaries
 
-* cppcheck 2.4.1
-* cpplint 1.5.5
+* cppcheck 2.12.0
+* cpplint 1.6.1
 
     > support  (**linux cpplint need python**)
     >> | Os | Bit | Version | 
@@ -153,7 +158,7 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 * Configure
     > skip unsupported flag
-    >> | type | value | 
+    >> | type | value |
     >> |:----:|:-----:|
     >> |bool|false|
     >> |string|""|
@@ -162,7 +167,7 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 ## Known Issues
 
-* cpp-checker https://github.com/eBikeLabs/cpp-checker/issues
+* cpp-checker https://github.com/QiuminGe/cpp-checker/issues
 
 * cpplint : https://github.com/cpplint/cpplint/issues
 
@@ -170,9 +175,9 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 ## Source code 
 
-* https://github.com/eBikeLabs/cpp-checker
+* https://github.com/QiuminGe/cpp-checker
 
-##  [Release Notes](https://github.com/eBikeLabs/cpp-checker/blob/main/CHANGELOG.md)
+##  [Release Notes](https://github.com/QiuminGe/cpp-checker/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------
 
