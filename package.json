@@ -184,6 +184,17 @@
 					]],
 					"description": "see ReadMe"
 				},
+				"cpp-check-lint.cppcheck.--premium=": {
+					"type": "array",
+					"examples": [
+						[
+							"misra-c-2012",
+							"cert-c-2016"
+						]
+					],
+					"default": [],
+					"description": "premium"
+				},
 				"cpp-check-lint.cppcheck.--customargs=": {
 					"type": "string",
 					"default": "",
