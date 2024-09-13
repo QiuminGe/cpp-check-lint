@@ -127,6 +127,17 @@ class cppcheck {
             }
         }
 
+        let premium = this.base.get_cfg(this.settings, "--premium=", false, []);
+        if (0 != premium.length) {
+            for (let value of premium) {
+                if ("string" == typeof (value)) {
+                    if (!common.is_empty_str(value)) {
+                        res.push("--premium=" + value);
+                    }
+                }
+            }
+        }
+
         common.remove_empty(res);
         return res;
     }
@@ -308,7 +319,7 @@ class cppcheck {
             });
         }
     }
- 
+
     /**
      * @param {string} result
      */
@@ -318,7 +329,7 @@ class cppcheck {
             vscode.window.setStatusBarMessage(" " + result, 2000);
         }
      }
-    
+
 
     /**
      * @param {boolean} isFile
