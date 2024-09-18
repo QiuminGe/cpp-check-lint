@@ -80,7 +80,7 @@ pip install cpplint
 
 ## Extension Settings
 
-* If ${workspace folder} is included, it will be replaced.
+* If ${workspaceFolder} is included, it will be replaced.
 
 ### Cppcheck
 
