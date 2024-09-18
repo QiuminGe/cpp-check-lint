@@ -80,6 +80,8 @@ pip install cpplint
 
 ## Extension Settings
 
+* If ${workspace folder} is included, it will be replaced.
+
 ### Cppcheck
 
 * Cppcheck:--executable
@@ -134,7 +136,6 @@ Some addons need extra arguments. You can configure json or json file.
     ]
 }
 "--rule-texts=/home/user/misra.txt" (need absolute path, and use "/" or "\\" to split paths)
-If ${workspace folder} is included, it will be replaced.
 "args": ["--rule-texts=${workspaceFolder}/rule/misra.txt"] -> "args":["--rule-texts=D:/code/demo/rule/misra.txt"]}
 ```
 
