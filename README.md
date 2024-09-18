@@ -201,7 +201,6 @@ if ( cpplint version support "--recursive") {
 
 * https://github.com/QiuminGe/cpp-check-lint
 
-
 ## [Release Notes](https://github.com/QiuminGe/cpp-check-lint/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------

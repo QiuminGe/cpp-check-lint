@@ -115,3 +115,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.5.4] - 2024.09.17
 
 - up readme
+
+## [v1.5.5] - 2024.09.17
+
+- misra.py addon not working correctly
