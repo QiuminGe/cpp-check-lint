@@ -19,6 +19,17 @@ class cpplint {
         this.update_setting();
     }
 
+    /**
+    * 解析并替换路径中的 ${workspaceFolder} 变量
+    * @param {string} str
+    * @returns {string}
+    */
+    replaceWorkspaceFolder(str) {
+        let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        workspaceFolder = workspaceFolder.replace(/\\/g, "/");
+        return str.replace("${workspaceFolder}", workspaceFolder);
+    }
+
     get_cfg() {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
             this.base.get_cfg(this.settings, "--output=", true),
@@ -63,7 +74,7 @@ class cpplint {
         }
 
         common.remove_empty(res);
-        return res;
+        return res.map(this.replaceWorkspaceFolder.bind(this));
     }
 
     update_setting() {

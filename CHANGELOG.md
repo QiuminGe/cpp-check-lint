@@ -107,3 +107,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add support for cppcheck premium
 - cpplint update to v2.15.0
 - cppcheck update to v1.6.1
+
+## [v1.5.3] - 2024.09.17
+
+- Add support ${worspaceFolder}

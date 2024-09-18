@@ -20,6 +20,17 @@ class cppcheck {
         this.update_setting();
     }
 
+    /**
+    * 解析并替换路径中的 ${workspaceFolder} 变量
+    * @param {string} str
+    * @returns {string}
+    */
+    replaceWorkspaceFolder(str) {
+        let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        workspaceFolder = workspaceFolder.replace(/\\/g, "/");
+        return str.replace("${workspaceFolder}", workspaceFolder);
+    }
+
     get_cfg() {
         let res = new Array(this.base.get_cfg(this.settings, "--executable", false),
             this.base.get_cfg(this.settings, "--template=", true),
@@ -119,9 +130,6 @@ class cppcheck {
                 }
                 else {
                     let addon_json = JSON.stringify(value);
-                    let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
-                    workspaceFolder = workspaceFolder.replace(/\\/g, "/")
-                    addon_json = addon_json.replace("${workspaceFolder}", workspaceFolder)
                     res.push("--addon=" + addon_json);
                 }
             }
@@ -139,7 +147,7 @@ class cppcheck {
         }
 
         common.remove_empty(res);
-        return res;
+        return res.map(this.replaceWorkspaceFolder.bind(this));
     }
 
     update_setting() {

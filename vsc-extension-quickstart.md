@@ -37,3 +37,12 @@
 
  * [Publish your extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) on the VSCode extension marketplace.
  * Automate builds by setting up [Continuous Integration](https://code.visualstudio.com/api/working-with-extensions/continuous-integration).
+
+
+## publish
+
+* package.json 版本号
+
+* CHANGELOG.md 修改历史
+
+* vsce package 打离线包

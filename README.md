@@ -179,14 +179,14 @@ if ( cpplint version support "--recursive") {
 
     It's just suppresses alarms
 
-* Configure
-    > skip unsupported flag
-      >> | type | value |
-      >> |:----:|:-----:|
-      >> |bool|false|
-      >> |string|""|
-      >> |number|null|
-      >> |object|null|
+* Configure skip unsupported flag
+
+    | type | value |
+    |:----:|:-----:|
+    |bool|false|
+    |string|""|
+    |number|null|
+    |object|null|
 
 ## Known Issues
 

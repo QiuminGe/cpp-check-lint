@@ -21,11 +21,13 @@ class code_base {
 
     /**
      * @param {string} file
+     * return {string}
+     * 将相对路径转换为绝对路径
      */
     to_full_name(file) {
         let file2 = file.trim().toString();
         if (!fs.existsSync(file2)) {
-            file2 = path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, file2);
+            file2 = path.resolve(vscode.workspace.workspaceFolders[0].uri.fsPath, file2);
         }
         return file2;
     }
@@ -48,7 +50,7 @@ class code_base {
      * @param {vscode.WorkspaceConfiguration} settings
      * @param {any} key
      * @param {any} default_value
-     * @param {any} need_add_key
+     * @param boolean need_add_key
      */
     get_cfg(settings, key, need_add_key, default_value = null, real_key = null) {
         let res = settings.get(key);
