@@ -111,3 +111,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.5.3] - 2024.09.17
 
 - Add support ${worspaceFolder}
+
+## [v1.5.4] - 2024.09.17
+
+- up readme
