@@ -130,9 +130,6 @@ class cppcheck {
                 }
                 else {
                     let addon_json = JSON.stringify(value);
-                    let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
-                    workspaceFolder = workspaceFolder.replace(/\\/g, "/")
-                    addon_json = addon_json.replace("${workspaceFolder}", workspaceFolder)
                     res.push("--addon=" + addon_json);
                 }
             }

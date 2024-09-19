@@ -116,6 +116,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - up readme
 
-## [v1.5.5] - 2024.09.17
+~~## [v1.5.5] - 2024.09.17~~
 
-- misra.py addon not working correctly
+## [v1.5.6] - 2024.09.19
+
+- linux cpplint.py \r\n -> \n
