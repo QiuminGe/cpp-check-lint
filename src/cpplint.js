@@ -38,10 +38,18 @@ class cpplint {
             this.base.get_cfg(this.settings, "--headers=", true),
             this.base.get_cfg(this.settings, "--verbose=", true),
             this.base.get_cfg(this.settings, "--filter=", true),
-            this.base.get_cfg(this.settings, "--linelength=", true),
-            this.base.get_cfg(this.settings, "--customargs=", false)
+            this.base.get_cfg(this.settings, "--linelength=", true)
         );
 
+        let custom = this.base.get_cfg(this.settings, "--customargs=", false, []);
+        if (0 != custom.length) {
+            for (let value of custom) {
+                if (!common.is_empty_str(value)) {
+                    res.push(value)
+                }
+            }
+        }
+        
         let exclude = this.base.get_cfg(this.settings, "--exclude=", false, []);
         if (0 != exclude.length) {
             for (let value of exclude) {
