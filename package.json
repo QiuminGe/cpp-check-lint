@@ -196,9 +196,15 @@
 					"description": "premium"
 				},
 				"cpp-check-lint.cppcheck.--customargs=": {
-					"type": "string",
-					"default": "",
-					"description": "customargs"
+					"type": "array",
+					"default": [],
+					"description": "customargs",
+					"examples": [
+						[
+							"--library=<cfg>",
+							"--check-level=<level>"
+						]
+					]
 				},
 				"cpp-check-lint.cppcheck.--enable": {
 					"type": "boolean",
@@ -369,8 +375,8 @@
 					"description": "Enable or disable the cpplint"
 				},
 				"cpp-check-lint.cpplint.--customargs=": {
-					"type": "string",
-					"default": "",
+					"type": "array",
+					"default": [],
 					"description": "customargs"
 				},
 				"cpp-check-lint.cpplint.--executable": {
