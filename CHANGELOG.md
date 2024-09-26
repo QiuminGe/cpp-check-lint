@@ -121,3 +121,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.5.6] - 2024.09.19
 
 - linux cpplint.py \r\n -> \n
+
+## [v1.5.7] - 2024.09.26
+
+- --executable": supported "${workspaceFolder}/cppcheck
+- change cppcheck and cpplint customargs to array types

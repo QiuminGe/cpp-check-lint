@@ -98,6 +98,7 @@ class cppcheck {
             log.info("use builtin binaries " + res[0]);
         }
         else {
+            res[0] = this.replaceWorkspaceFolder(res[0]);
             let params = ["--version"];
             let result = common.runCmd_spawnSync(res[0], params);
             if (result.error) {
