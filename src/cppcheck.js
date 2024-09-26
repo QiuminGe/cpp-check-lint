@@ -43,10 +43,17 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--std_c++=", true, null, "--std="),
             this.base.get_cfg(this.settings, "--inline-suppr", true),
             this.base.get_cfg(this.settings, "--suppressions-list=", true),
-            this.base.get_cfg(this.settings, "--report-progress", true),
-            this.base.get_cfg(this.settings, "--customargs=", false),
-
+            this.base.get_cfg(this.settings, "--report-progress", true)
         );
+
+        let custom = this.base.get_cfg(this.settings, "--customargs=", false, []);
+        if (0 != custom.length) {
+            for (let value of custom) {
+                if (!common.is_empty_str(value)) {
+                    res.push(value)
+                }
+            }
+        }
 
         let exclude = this.base.get_cfg(this.settings, "-i ", false, []);
         if (0 != exclude.length) {
