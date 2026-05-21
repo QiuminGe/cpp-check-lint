@@ -35,6 +35,8 @@ function activate(context) {
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerCommand('cpp-check-lint.cppcheckcmd', (url) => { cppcheck_obj.on_cmd(context, url); });
 	context.subscriptions.push(disposable);
+	disposable = vscode.commands.registerCommand('cpp-check-lint.cppcheckproject', () => { cppcheck_obj.activate_project(); });
+	context.subscriptions.push(disposable);
 	disposable = vscode.languages.registerCodeActionsProvider(support_language, cppcheck_obj);
 	context.subscriptions.push(disposable);
 

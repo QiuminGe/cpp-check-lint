@@ -282,7 +282,7 @@ class cppcheck {
     /**
      * @param {string} result
      */
-     exec_stderror_res(result) {
+    exec_stderror_res(result) {
         let regexArray;
         let file_dict = {};
         while (regexArray = this.regex.exec(result)) {
@@ -339,12 +339,12 @@ class cppcheck {
     /**
      * @param {string} result
      */
-     on_stdout(result) {
+    on_stdout(result) {
         let stdout_regex = /^[0-9]*\/[0-9]* files checked [0-9]*% done$/gm;
-        if(stdout_regex.test(result)){
+        if (stdout_regex.test(result)) {
             vscode.window.setStatusBarMessage(" " + result, 2000);
         }
-     }
+    }
 
 
     /**
@@ -367,11 +367,45 @@ class cppcheck {
         }
         else {
             this.base.working = true;
-            vscode.window.setStatusBarMessage(this.name + ' running...',1000);
+            vscode.window.setStatusBarMessage(this.name + ' running...', 1000);
         }
 
         let dest_path = this.base.get_dest_path(isFile, url);
         let cmmand_array = this.get_full_cmd(dest_path);
+        log.info(cmmand_array);
+        this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, this.on_stdout, this.on_exit, this);
+        log.info("pid : " + this.base.spawn.pid);
+    }
+
+    activate_project() {
+        if (this.settings.get('--enable') === true) {
+            log.info(this.name + ' is enable!');
+        }
+        else {
+            log.info(this.name + ' is disable!');
+            return;
+        }
+
+        if (this.base.working) {
+            vscode.window.showErrorMessage("please wait checking done !")
+            return;
+        }
+        else {
+            this.base.working = true;
+            vscode.window.setStatusBarMessage(this.name + ' running...', 1000);
+        }
+
+        let project_path = this.settings.get('--project');
+        if (common.is_empty_str(project_path)) {
+            vscode.window.showErrorMessage("cppcheck --project path is not configured");
+            this.base.working = false;
+            return;
+        }
+        project_path = this.replaceWorkspaceFolder(project_path);
+        project_path = this.base.to_full_name(project_path);
+
+        let cmmand_array = this.cmd_ary.slice(0);
+        cmmand_array.push("--project=" + project_path);
         log.info(cmmand_array);
         this.base.spawn = common.runCmd(this.base.channel, cmmand_array, this.on_stderror, this.on_stdout, this.on_exit, this);
         log.info("pid : " + this.base.spawn.pid);
